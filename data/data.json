@@ -1,0 +1,25 @@
+{
+    "musicas": [
+        {
+            "nome":"Dream On",
+            "cantor":"Aerosmith",
+            "caminho":"DreamOn"
+        },
+        {
+            "nome":"Like A Stone",
+            "cantor":"Audioslave",
+           "caminho":"LikeAStone"
+        },
+        {
+            "nome":"Redemption Song",
+            "cantor":"Bob Marley",
+            "caminho":"RedemptionSong"
+        },
+        {
+            "nome":"Times Like These",
+            "cantor":"Foo Fighters",
+            "caminho":"TimesLikeThese"
+        }
+
+    ]
+}

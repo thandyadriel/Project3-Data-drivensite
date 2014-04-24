@@ -1,0 +1,252 @@
+body{
+    background-color: #101052;
+    font-family: arial, verdana;
+    color: #101052;
+}
+
+#boxAll{
+    margin: 0 auto;
+    width: 850px;
+
+    height: 600px;
+    position: relative;
+}
+
+
+
+#boxPage{
+    background: -moz-linear-gradient(top,  #ddd, #fff) repeat-X;
+    /* Google Chrome */
+    background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#fff)) repeat-x;
+
+    box-shadow : #fff 2px 2px 12px 2px;
+    background-color: green;
+    width: 400px;
+    height: 600px;
+    float: right;
+    position: relative;
+    border-radius: 10px;
+}
+
+    #menuPage{
+    margin: 0 auto;
+
+    width: 370px;
+    height: 40px;
+}
+
+    .menuItem{
+    font-weight: bold;
+    margin: 0 auto;
+    position: relative;
+    height: 40px;
+    width: 30%;
+    text-align: center;
+
+    border-radius: 10px 10px 0px 0px;
+    padding-top: 10px;
+}
+
+        #artista{ float: left; }
+        #album{ float: right;}
+
+    #page{
+    width: 370px;
+    height: 540px;
+    background-color: #696969;
+    position: absolute;
+    left: 15px;
+    bottom: 15px;
+    border-radius: 0px 0px  10px 10px;
+    color: #fff;
+}
+
+
+#pesquisa{
+    margin-top: 35px;
+    padding: 7px;
+    background: -moz-linear-gradient(top,  #ddd, #fff) repeat-X;
+    /* Google Chrome */
+    background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#fff)) repeat-x;
+
+    box-shadow : #fff 2px 2px 12px 2px;
+    width: 410px;
+    position: relative;
+    float: left;
+    border-radius: 10px;
+
+}
+
+    #texto{
+        position: relative;
+        float: left;
+    }
+
+    #getTexto{
+        background-color: #696969;
+        color: #fff;
+        border-radius: 10px;
+
+    }
+
+    #btnPesquisa{
+        color: #fff;
+        padding: 3px;
+        position: relative;
+        float: right;
+        font-weight: bold;
+        background-color: #696969;
+        border-radius: 10px;
+    }
+
+
+#boxList{
+    box-shadow : #fff 2px 2px 12px 2px;
+    width: 420px;
+    height: 400px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    background: -moz-linear-gradient(top,  #ddd, #fff) repeat-X;
+    /* Google Chrome */
+    background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#fff)) repeat-x;
+
+    border-radius: 10px;
+}
+
+    #listConteudo{
+    color: #fff;
+    position: absolute;
+    height: 370px;
+    width: 390px;
+    background-color: #696969;
+    left: 15px;
+    bottom: 15px;
+    border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+#boxPlayer{
+    width: 400px;
+    height: 110px;
+    margin: 0 auto;
+    position: relative;
+    float: left;
+}
+
+#player{
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    background: -moz-linear-gradient(top,  #ddd, #fff) repeat-X;
+    /* Google Chrome */
+    background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#fff)) repeat-x;
+    box-shadow : #fff 2px 2px 12px 2px;
+
+}
+
+.informacoes{
+    margin-bottom: 5px;
+
+}
+
+.informacao{
+    text-align: center;
+    height: 70%;
+    overflow: hidden;
+    text-shadow: 2px 2px 2px #fff;
+    padding: 10px;
+    padding-left: 5px;
+    padding-rigth: 5px;
+    background: -moz-linear-gradient(top, #ddd, #fff) repeat-X;
+    /* Google Chrome */
+    background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#fff)) repeat-x;
+    border-radius: 10px;
+
+}
+
+#nomeCantor{
+    width: 30%;
+    float: left;
+}
+
+#nomeMusica{
+    width: 60%;
+    float: right;
+    margin-left: 5px;
+}
+
+#barraEx{
+    position: relative;
+    margin-top: 103px;
+    width: 100%;
+    height: 5px;
+    background-color: #696969;
+}
+
+#barraIn{
+    margin-top: 103px;
+    height: 5px;
+    background-color: #0c1383;
+    width: 0px;
+}
+
+.opcoes{
+    float: left;
+    padding: 5px;
+    margin: 3px;
+    height: 40%;
+    width: 40%;
+}
+
+#direito{
+    float: right;
+}
+
+.botao{
+    padding: 10px;
+    text-align: center;
+    width: 40%;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 100px;
+    background-color: #696969;
+    text-decoration-style: double;
+    color: #fff;
+    font-weight: bold;
+}
+
+#toPlay{
+    float: left;
+}
+
+#stop{
+    float: right;
+}
+
+.tempo{
+    text-align: center;
+    padding: 10px;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin: 3px;
+    background: -moz-linear-gradient(top, #ddd, #fff) repeat-X;
+    /* Google Chrome */
+    background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#fff)) repeat-x;
+    width: 40%;
+    border-radius: 10px;
+}
+#correnteTime{
+    float: left;
+}
+
+#totalTime{
+    float: right;
+}
