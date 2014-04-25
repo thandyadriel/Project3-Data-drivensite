@@ -1,23 +1,36 @@
 $(document).ready(function(){
     var barraW = document.getElementById("barraEx").offsetWidth; //it gets the width of the
-    var caminho = "sounds/"; // address of the song in my folder
+    var caminho = "music/"; // address of the song in my folder
     var tipo = ".mp3"; //type of the song
     var musicas; //it stores the music list from json
     var i; //it is the index
     var tamanho; // it stores the duration of current music
     var isItPlaying = 0; //it defines what the button play should do
     var waitToGet = 100; //it is a delay to get the total duration of the music because to get this value spend more time
+    var correnteArtMusic;
+//$(".btnMusicArt").click(function(){
+    //   $(".misicasSlide").slideToggle("slow");
+    // });
 
 
 //to get data from json
-    $.getJSON("data/data.json",function(data){
-        musicas = data.musicas;
+    $.getJSON("data/listaM.json",function(data){
+        musicas = data.music;
+        console.log("all data: "+musicas);
     });
 
-//get the music
-    var minhaMusica = document.getElementById("myAudio");
 
-    $("#toPlay").click(function(){ //when click
+
+
+
+
+
+showArt();
+
+//get the music
+   var minhaMusica = document.getElementById("myAudio");
+
+   $("#toPlay").click(function(){ //when click
         if(isItPlaying == 0){//first time.. just play starting of the first music
             i = 0;
             executar(musicas);
@@ -40,6 +53,7 @@ $(document).ready(function(){
         });
 
     $("#stop").click(function(){
+
         stopMusic();//it starts from the first music
     });
 
@@ -47,6 +61,117 @@ $(document).ready(function(){
 
 
 
+
+
+
+
+
+
+
+
+    function showGen(){
+        $("#genero").css("backgroundColor", "#696969").css("color", "#fff");
+        $("#album, #artista").css("backgroundColor", "transparent").css("color", "#101052");
+    }
+
+
+    function showArt(){
+        $("#artista").css("backgroundColor", "#696969").css("color", "#fff");
+        $("#album, #genero").css("backgroundColor", "transparent").css("color", "#101052");
+
+        $.getJSON("data/listaM.json",function(data){
+            musicas = data.music;
+            var arArt = new Array();
+
+            for(var x=0; x < musicas.length; x++){
+                var existe=0;
+                for (var y=0; y<arArt.length; y++){
+                    if(arArt[y] == musicas[x].artist){ existe=1;}
+                }
+                if(existe == 0){
+                    arArt[y] = musicas[x].artist;
+                }
+            }
+
+            console.log("meuArray "+arArt);
+            for(var x=0; x< arArt.length;x++){
+                var varPageArt = "" +
+                "<div class='pageArt'>"+
+                   "<div class='btnPlayArt "+ arArt[x].replace(/\s/g, "") +"'  value = '"+ arArt[x].replace(/\s/g, "") +"'> Play </div>"+
+                   "<div class='btnMusicArt "+ arArt[x].replace(/\s/g, "") +"' value = '"+ arArt[x].replace(/\s/g, "") +"'> Music</div>"+
+                   "<div class='nomeArt "+ arArt[x].replace(/\s/g, "") +"' value = '"+ arArt[x].replace(/\s/g, "") +"'>"+ arArt[x] +"</div>"+
+                   "<div class='musicasSlide "+ arArt[x].replace(/\s/g, "") +"' value = '"+ arArt[x].replace(/\s/g, "") +"'>Musicas"+
+                    "<div class='listaMusicasAqui "+ arArt[x].replace(/\s/g, "") +"' value = '"+ arArt[x].replace(/\s/g, "") +"'>";
+
+
+
+                for(var j=0; j < musicas.length; j++){
+                    if(musicas[j].artist == arArt[x]){
+                        var varPageArt = varPageArt +
+                            "<div class='itemMusica "+ musicas[j].name.replace(/\s/g, "") +"' value = '"+ musicas[j].name.replace(/\s/g, "") +"'>"+
+                                "<div class='playMusic "+ musicas[j].name.replace(/\s/g, "") +"' value = '"+ musicas[j].name.replace(/\s/g, "") +"'> > </div>"+
+                                "<div class='addMusic "+ musicas[j].name.replace(/\s/g, "") +"'value = '"+ musicas[j].name.replace(/\s/g, "") +"'> + </div>"+
+                                "<div class= 'nomeMusica "+ musicas[j].name.replace(/\s/g, "") +"' value = '"+ musicas[j].name.replace(/\s/g, "") +"'>"+ musicas[j].name+"</div>"+
+                                "<div class='generoMusica "+ musicas[j].genre.replace(/\s/g, "") +"' value = '"+ musicas[j].genre.replace(/\s/g, "") +"'> "+musicas[j].genre+" </div>"+
+                            "</div>";
+
+
+                    }
+
+                }
+
+                varPageArt = varPageArt + "</div>"+   "</div>";
+                $("#page").append(varPageArt);
+
+            }
+
+            //deve fazer coisas relacioadas ao artis
+
+                $('.pageArt .btnPlayArt, .pageArt .btnMusicArt, .pageArt .nomeArt').unbind().click(function(){
+                    var idvalue = $(this).attr('value');
+                    var idclass = $(this).attr("class");
+
+
+                    console.log("value "+idvalue);
+                    console.log("class "+idclass);
+                    idclass = idclass.replace(" "+idvalue, "");
+
+                    if(idclass == "btnMusicArt"){// show music
+
+                            correnteArtMusic = idvalue;
+                            console.log("class "+idvalue);
+
+                        $(".musicasSlide").slideUp("slow");
+                        $("."+correnteArtMusic).slideDown("slow");
+                        //$("."+correnteArtMusic).slideToggle("slow");
+
+                    }
+
+                   else  if(idclass == "btnPlayArt"){ //play the list
+                        alert("play artist'songs:"  + "."+idclass+"."+idvalue);
+                        $("."+idclass+"."+idvalue).css("backgroundColor", "#0f0");
+                    }
+
+                    else if (idclass == "nomeArt"){ // show artist info
+                        $("#listConteudo").html("."+idclass+"."+idvalue);
+
+                    }
+
+                });
+
+
+            $('.itemMusica div').unbind().click(function(){
+                var idvalue = $(this).attr('value');
+                var idclass = $(this).attr("class");
+
+                console.log("Musicas value "+idvalue);
+                console.log("Musicas class "+idclass);
+
+            })
+
+        });
+
+    }
 
     function stopMusic(){// stop music
         minhaMusica.load();
@@ -129,10 +254,10 @@ $(document).ready(function(){
 
     function escreveInfo(refmusicas){ //it writes author;s name, music's name and music's address
         var vmus = refmusicas;
-
-        $("#nomeMusica").html(vmus[i].nome);
-        $("#nomeCantor").html(vmus[i].cantor);
-         minhaMusica.src = caminho + vmus[i].caminho + tipo;
+        console.log(vmus[i].name);
+        $("#nomeMusica").html(vmus[i].name);
+        $("#nomeCantor").html(vmus[i].artist);
+         minhaMusica.src = caminho + vmus[i].local + tipo;
 
     }
 

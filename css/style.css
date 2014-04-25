@@ -3,6 +3,11 @@ body{
     font-family: arial, verdana;
     color: #101052;
 }
+body h2{
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 0 10px #ffffff, 0 0 20px #35f8ff, 0 0 30px #43cfff, 0 0 40px #66a1ff,   0 0 150px #c58eff;
+}
 
 #boxAll{
     margin: 0 auto;
@@ -42,7 +47,6 @@ body{
     height: 40px;
     width: 30%;
     text-align: center;
-
     border-radius: 10px 10px 0px 0px;
     padding-top: 10px;
 }
@@ -51,15 +55,119 @@ body{
         #album{ float: right;}
 
     #page{
-    width: 370px;
-    height: 540px;
-    background-color: #696969;
-    position: absolute;
-    left: 15px;
-    bottom: 15px;
-    border-radius: 0px 0px  10px 10px;
-    color: #fff;
+
+        border-width: medium;
+        border-left: 0px;
+        border-right: 0px;
+        border-style: solid;
+        border-color: #696969;
+        width: 370px;
+        height: 540px;
+        background-color: #696969;
+        position: absolute;
+        left: 15px;
+        bottom: 15px;
+        border-radius: 0px 0px  10px 10px;
+        color: #fff;
+        overflow: auto;
 }
+
+
+        .pageArt{
+            color: #101052;
+            margin: 0 auto;
+            position: relative;
+            margin-top: 6px;
+            text-align: center;
+            background: -moz-linear-gradient(top,  #ddd, #fff) repeat-X;
+            /* Google Chrome */
+            background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#fff)) repeat-x;
+
+            width: 95%;
+            height: auto;
+            border-radius: 10px;
+            padding: 12px;
+            padding-left: 5px;
+            padding-right: 5px;
+            display: block;
+            overflow: auto;
+        }
+ .btnMusicArt, .btnPlayArt{
+                color: #ffffff;
+                padding: 5px;
+                height: auto;
+                width: 15%;
+                border-radius: 10px;
+
+                background-color: #696969;
+                float: left;
+
+              }
+        .btnMusicArt{ float: right}
+
+        .nomeArt{
+                width: 55%;
+                margin: 0 auto;
+                font-size: 18px;
+                font-weight: bold;
+            }
+
+        .musicasSlide{
+            font-weight: bold;
+            color: #ffffff;
+            font-size: 20px;
+            margin-top: 20px;
+            background-color: #2d2da6;
+            border-radius: 10px;
+            display:none;
+            padding-bottom: 15px;
+            padding-top: 5px;
+        }
+            .itemMusica{
+                color:  #101052;
+                margin: 0 auto;
+                position: relative;
+                margin-top: 6px;
+                text-align: center;
+                background: -moz-linear-gradient(top,  #ddd, #fff) repeat-X;
+                /* Google Chrome */
+                background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#fff)) repeat-x;
+
+                width: 95%;
+                height: auto;
+                border-radius: 10px;
+                padding: 12px;
+                padding-left: 5px;
+                padding-right: 5px;
+                display: block;
+                overflow: auto;
+            }
+
+                .playMusic, .addMusic{
+                    color: #ffffff;
+                    background-color: #696969;
+                    height: 20px;
+                    width: 20px;
+                    border-radius: 20px;
+                    margin: 3px;
+                    float: left;
+                }
+
+                .nomeMusica{
+                    padding-left: 3px;
+                    width: 50%;
+                    font-size: 15px;
+                    text-align: left;
+                    float: left;
+                }
+                .generoMusica{
+                    padding-right: 3px;
+                    width: 30%;
+                    font-size: 15px;
+                    text-align: right;
+                    float: right;
+                }
+
 
 
 #pesquisa{
@@ -159,7 +267,7 @@ body{
 
 .informacao{
     text-align: center;
-    height: 70%;
+    height: 100%;
     overflow: hidden;
     text-shadow: 2px 2px 2px #fff;
     padding: 10px;
@@ -175,6 +283,8 @@ body{
 #nomeCantor{
     width: 30%;
     float: left;
+
+
 }
 
 #nomeMusica{

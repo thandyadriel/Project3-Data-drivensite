@@ -1,0 +1,250 @@
+{
+    "music": [
+
+        {
+            "name": "Alive",
+            "local": "Alive",
+            "album":"The End",
+            "artist":"Black Eyed Peas",
+            "genre": "Hip Hop"
+        },
+        {
+            "name": "Boom Boom Pow",
+            "local": "BoomBoomPow",
+            "album":"The End",
+            "artist":"Black Eyed Peas",
+            "genre": "Hip Hop"
+        },
+        {
+            "name": "Imma Be",
+            "local": "ImmaBe",
+            "album":"The End",
+            "artist":"Black Eyed Peas",
+            "genre": "Hip Hop"
+        },
+        {
+            "name": "Missing You",
+            "local": "MissingYou",
+            "album":"The End",
+            "artist":"Black Eyed Peas",
+            "genre": "Hip Hop"
+        },
+        {
+            "name": "Now Generation",
+            "local": "NowGeneration",
+            "album":"The End",
+            "artist":"Black Eyed Peas",
+            "genre": "Hip Hop"
+        },
+        {
+            "name": "Rock That Body",
+            "local": "RockThatBody",
+            "album":"The End",
+            "artist":"Black Eyed Peas",
+            "genre": "Hip Hop"
+        },
+        {
+            "name": "Darlene",
+            "local": "Darlene",
+            "album":"Coda",
+            "artist":"Led Zeppelin",
+            "genre": "Rock & Roll"
+        },
+        {
+            "name": "I Cannot Quit You Baby",
+            "local": "ICannotQuitYouBaby",
+            "album":"Coda",
+            "artist":"Led Zeppelin",
+            "genre": "Rock & Roll"
+        },
+        {
+            "name": "Ozone baby",
+            "local": "Ozonebaby",
+            "album":"Coda",
+            "artist":"Led Zeppelin",
+            "genre": "Rock & Roll"
+        },
+        {
+            "name": "Poor Tom",
+            "local": "PoorTom",
+            "album":"Coda",
+            "artist":"Led Zeppelin",
+            "genre": "Rock & Roll"
+        },
+        {
+            "name": "Walk of Walter",
+            "local": "WalkofWalter",
+            "album":"Coda",
+            "artist":"Led Zeppelin",
+            "genre": "Rock & Roll"
+        },
+        {
+            "name": "We are Gonna Groove",
+            "local": "WeareGonnaGroove",
+            "album":"Coda",
+            "artist":"Led Zeppelin",
+            "genre": "Rock & Roll"
+        },
+        {
+            "name": "Babe Im gonna leave you",
+            "local": "BabeImgonnaleaveyou",
+            "album":"Remasters I",
+            "artist":"Led Zeppelin",
+            "genre": "Rock & Roll"
+        },
+        {
+            "name": "Good times bad times",
+            "local": "Goodtimesbadtimes",
+            "album":"Remasters I",
+            "artist":"Led Zeppelin",
+            "genre": "Rock & Roll"
+        },
+        {
+            "name": "Ramble on",
+            "local": "Rambleon",
+            "album":"Remasters I",
+            "artist":"Led Zeppelin",
+            "genre": "Rock & Roll"
+        },
+        {
+            "name": "Rock and roll",
+            "local": "Rockandroll",
+            "album":"Remasters I",
+            "artist":"Led Zeppelin",
+            "genre": "Rock & Roll"
+        },
+        {
+            "name": "Since Ive been loving you",
+            "local": "SinceIvebeenlovingyou",
+            "album":"Remasters I",
+            "artist":"Led Zeppelin",
+            "genre": "Rock & Roll"
+        },
+        {
+            "name": "Stairway to heaven",
+            "local": "Stairwaytoheaven",
+            "album":"Remasters I",
+            "artist":"Led Zeppelin",
+            "genre": "Rock & Roll"
+        },
+        {
+            "name": "Aneurysm",
+            "local": "Aneurysm",
+            "album":"From the Muddy Banks of the Wishkah",
+            "artist":"Nirvana",
+            "genre": "Grunge"
+        },
+        {
+            "name": "Been A Son",
+            "local": "BeenASon",
+            "album":"From the Muddy Banks of the Wishkah",
+            "artist":"Nirvana",
+            "genre": "Grunge"
+        },
+        {
+            "name": "Heart-Shaped Box",
+            "local": "Heart-ShapedBox",
+            "album":"From the Muddy Banks of the Wishkah",
+            "artist":"Nirvana",
+            "genre": "Grunge"
+        },
+        {
+            "name": "Lithium",
+            "local": "Lithium",
+            "album":"From the Muddy Banks of the Wishkah",
+            "artist":"Nirvana",
+            "genre": "Grunge"
+        },
+        {
+            "name": "Polly",
+            "local": "Polly",
+            "album":"From the Muddy Banks of the Wishkah",
+            "artist":"Nirvana",
+            "genre": "Grunge"
+        },
+        {
+            "name": "Smells Like Teen Spirit",
+            "local": "SmellsLikeTeenSpirit",
+            "album":"From the Muddy Banks of the Wishkah",
+            "artist":"Nirvana",
+            "genre": "Grunge"
+        },
+        {
+            "name": "Bohemian Rhapsody",
+            "local": "BohemianRhapsody",
+            "album":"Queen Collection",
+            "artist":"Queen",
+            "genre": "Classic Rock"
+        },
+        {
+            "name": "A Kind Of Magic",
+            "local": "AKindOfMagic",
+            "album":"Queen Collection",
+            "artist":"Queen",
+            "genre": "Classic Rock"
+        },
+        {
+            "name": "Radio Ga Ga",
+            "local": "RadioGaGa",
+            "album":"Queen Collection",
+            "artist":"Queen",
+            "genre": "Classic Rock"
+        },
+        {
+            "name": "Spread Your Wings",
+            "local": "SpreadYourWings",
+            "album":"Queen Collection",
+            "artist":"Queen",
+            "genre": "Classic Rock"
+        },
+        {
+            "name": "Under Pressure",
+            "local": "UnderPressure",
+            "album":"Queen Collection",
+            "artist":"Queen",
+            "genre": "Classic Rock"
+        },
+        {
+            "name": "We Will Rock You",
+            "local": "WeWillRockYou",
+            "album":"Queen Collection",
+            "artist":"Queen",
+            "genre": "Classic Rock"
+        },
+        {
+            "name": "Fix you",
+            "local": "Fixyou",
+            "album":"X&Y",
+            "artist":"Coldplay",
+            "genre": "Pop"
+        },
+        {
+            "name": "Speed Of Sound",
+            "local": "SpeedOfSound",
+            "album":"X&Y",
+            "artist":"Coldplay",
+            "genre": "Pop"
+        },
+        {
+            "name": "Talk",
+            "local": "Talk",
+            "album":"X&Y",
+            "artist":"Coldplay",
+            "genre": "Pop"
+        },
+        {
+            "name": "The Hardest Part",
+            "local": "TheHardestPart",
+            "album":"X&Y",
+            "artist":"Coldplay",
+            "genre": "Pop"
+        },
+        {
+            "name": "What If",
+            "local": "WhatIf",
+            "album":"X&Y",
+            "artist":"Coldplay",
+            "genre": "Pop"
+        }
+    ]
+}
