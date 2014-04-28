@@ -467,3 +467,9 @@ body h2{
 #totalTime{
     float: right;
 }
+
+#inde, #vete{
+    color: #fff;
+    position: relative;
+    left: 0px;
+}
