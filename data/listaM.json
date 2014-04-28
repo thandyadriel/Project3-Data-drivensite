@@ -48,84 +48,84 @@
             "local": "Darlene",
             "album":"Coda",
             "artist":"Led Zeppelin",
-            "genre": "Rock & Roll"
+            "genre": "Rock and Roll"
         },
         {
             "name": "I Cannot Quit You Baby",
             "local": "ICannotQuitYouBaby",
             "album":"Coda",
             "artist":"Led Zeppelin",
-            "genre": "Rock & Roll"
+            "genre": "Rock and Roll"
         },
         {
             "name": "Ozone baby",
             "local": "Ozonebaby",
             "album":"Coda",
             "artist":"Led Zeppelin",
-            "genre": "Rock & Roll"
+            "genre": "Rock and Roll"
         },
         {
             "name": "Poor Tom",
             "local": "PoorTom",
             "album":"Coda",
             "artist":"Led Zeppelin",
-            "genre": "Rock & Roll"
+            "genre": "Rock and Roll"
         },
         {
             "name": "Walk of Walter",
             "local": "WalkofWalter",
             "album":"Coda",
             "artist":"Led Zeppelin",
-            "genre": "Rock & Roll"
+            "genre": "Rock and Roll"
         },
         {
             "name": "We are Gonna Groove",
             "local": "WeareGonnaGroove",
             "album":"Coda",
             "artist":"Led Zeppelin",
-            "genre": "Rock & Roll"
+            "genre": "Rock and Roll"
         },
         {
             "name": "Babe Im gonna leave you",
             "local": "BabeImgonnaleaveyou",
             "album":"Remasters I",
             "artist":"Led Zeppelin",
-            "genre": "Rock & Roll"
+            "genre": "Rock and Roll"
         },
         {
             "name": "Good times bad times",
             "local": "Goodtimesbadtimes",
             "album":"Remasters I",
             "artist":"Led Zeppelin",
-            "genre": "Rock & Roll"
+            "genre": "Rock and Roll"
         },
         {
             "name": "Ramble on",
             "local": "Rambleon",
             "album":"Remasters I",
             "artist":"Led Zeppelin",
-            "genre": "Rock & Roll"
+            "genre": "Rock and Roll"
         },
         {
             "name": "Rock and roll",
             "local": "Rockandroll",
             "album":"Remasters I",
             "artist":"Led Zeppelin",
-            "genre": "Rock & Roll"
+            "genre": "Rock and Roll"
         },
         {
             "name": "Since Ive been loving you",
             "local": "SinceIvebeenlovingyou",
             "album":"Remasters I",
             "artist":"Led Zeppelin",
-            "genre": "Rock & Roll"
+            "genre": "Rock and Roll"
         },
         {
             "name": "Stairway to heaven",
             "local": "Stairwaytoheaven",
             "album":"Remasters I",
             "artist":"Led Zeppelin",
-            "genre": "Rock & Roll"
+            "genre": "Rock and Roll"
         },
         {
             "name": "Aneurysm",
@@ -214,37 +214,69 @@
         {
             "name": "Fix you",
             "local": "Fixyou",
-            "album":"X&Y",
+            "album":"X and Y",
             "artist":"Coldplay",
             "genre": "Pop"
         },
         {
             "name": "Speed Of Sound",
             "local": "SpeedOfSound",
-            "album":"X&Y",
+            "album":"X and Y",
             "artist":"Coldplay",
             "genre": "Pop"
         },
         {
             "name": "Talk",
             "local": "Talk",
-            "album":"X&Y",
+            "album":"X and Y",
             "artist":"Coldplay",
             "genre": "Pop"
         },
         {
             "name": "The Hardest Part",
             "local": "TheHardestPart",
-            "album":"X&Y",
+            "album":"X and Y",
             "artist":"Coldplay",
             "genre": "Pop"
         },
         {
             "name": "What If",
             "local": "WhatIf",
-            "album":"X&Y",
+            "album":"X and Y",
             "artist":"Coldplay",
             "genre": "Pop"
         }
+    ],
+
+    "information":[
+        {
+            "artist":"Coldplay",
+            "picture":"coldplay.jpg",
+            "texto":"<P>Coldplay are a British rock band formed in 1996 by lead vocalist Chris Martin and lead guitarist Jonny Buckland at University College London (UCL). After they formed under the name Pectoralz, Guy Berryman joined the group as a bassist and they changed their name to Starfish. Will Champion joined as a drummer, backing vocalist, and multi-instrumentalist, completing the line-up. Manager Phil Harvey is often considered an unofficial fifth member. The band renamed themselves 'Coldplay' in 1998, before recording and releasing three EPs; Safety in 1998, Brothers & Sisters as a single in 1999 and The Blue Room in the same year. The latter was their first release on a major label, after signing to Parlophone.</P><P>They achieved worldwide fame with the release of the single 'Yellow' in 2000, followed by their debut album released in the same year, Parachutes, which was nominated for the Mercury Prize. The band's second album, A Rush of Blood to the Head (2002), was released to critical acclaim and won multiple awards, including NME's Album of the Year. They have also come top of the BBC Radio 2 poll of the favourite album of all time. Their next release, X&Y, the best-selling album worldwide in 2005, was met with mostly positive reviews upon its release, though some critics felt that it was inferior to its predecessor. The band's fourth studio album, Viva la Vida or Death and All His Friends (2008), was produced by Brian Eno and released again to largely positive reviews, earning several Grammy Award nominations and wins at the 51st Grammy Awards. On 24 October 2011, they released their fifth studio album, Mylo Xyloto, which received mixed to positive reviews, topped the charts in over 34 countries, and was the UK's best-selling rock album of 2011. In March 2014, they announced their new album, entitled Ghost Stories, will be released on 19 May, the same year.</P> <P>The band has won a number of music awards throughout their career, including eight Brit Awards—winning Best British Group three times, five MTV Video Music Awards and seven Grammy Awards from 25 nominations. Coldplay have sold more than 70 million records worldwide. In December 2009, Rolling Stone readers voted the group the fourth-best artist of the 2000s.[12] Coldplay have been an active supporter of various social and political causes, such as Oxfam's Make Trade Fair campaign and Amnesty International. The group have also performed at various charity projects such as Band Aid 20, Live 8, Sound Relief, Hope for Haiti Now: A Global Benefit for Earthquake Relief, The Secret Policeman's Ball, Sport Relief and the Teenage Cancer Trust.</P>"
+        },
+        {
+            "artist":"Queen",
+            "picture":"queen.jpg",
+            "texto":" QUEEN OIAJSOAx mxax jaokd poaskap osckap sJSAIJS"
+        },
+        {
+            "artist":"Nirvana",
+            "picture":"nirvana.jpg",
+            "texto":"NIRVANA xuiahxajsxoia  cimaicmac aco ima imoac acoim aoicm ac"
+        },
+        {
+            "artist":"Led Zeppelin",
+            "picture":"led.jpg",
+            "texto":"<p>The Black Eyed Peas are an American hip hop group, consisting of rappers will.i.am, apl.de.ap, Taboo, and singer Fergie. Originally an alternative hip hop group, they subsequently added R&B, pop and EDM/dance influences. Although the group was founded in Los Angeles in 1995, it was not until the release of their third album Elephunk in 2003 that they found widespread acclaim and achieved high record sales. Since that time, the group has sold an estimated 56 million records worldwide. According to Nielsen SoundScan, the Black Eyed Peas were the second-best-selling artist/group of all time for downloaded tracks, with over 42 million sales as of the end of 2011.</p>"
+        },
+        {
+            "artist":"Black Eyed Peas",
+            "picture":"peas.jpg",
+            "texto":"<p>The Black Eyed Peas are an American hip hop group, consisting of rappers will.i.am, apl.de.ap, Taboo, and singer Fergie. Originally an alternative hip hop group, they subsequently added R&B, pop and EDM/dance influences. Although the group was founded in Los Angeles in 1995, it was not until the release of their third album Elephunk in 2003 that they found widespread acclaim and achieved high record sales. Since that time, the group has sold an estimated 56 million records worldwide. According to Nielsen SoundScan, the Black Eyed Peas were the second-best-selling artist/group of all time for downloaded tracks, with over 42 million sales as of the end of 2011.</p><P>Their first major hit was the 2003 single 'Where Is the Love?' from Elephunk, which topped the charts in 13 countries, including the United Kingdom, where it spent seven weeks at number one and went on to become Britain's biggest selling single of 2003. Another European hit single from the album was 'Shut Up'. Their fourth album, Monkey Business, was an even bigger worldwide success, certified 4× Platinum in the U.S., and spawning four singles, 'Don't Phunk with My Heart', 'Don't Lie', 'My Humps' and 'Pump It'. In 2009, the group became one of only 11 artists to have simultaneously held the No. 1 and No. 2 spots on the Billboard Hot 100, with their singles 'Boom Boom Pow' and 'I Gotta Feeling', which topped the chart for an unprecedented 26 consecutive weeks. This album The E.N.D. later produced a third Hot 100 number-one placement with 'Imma Be', making the group one of few to ever place three number one singles on the chart from the same album, before being followed with 'Rock That Body' and 'Meet Me Halfway', which peaked in the Top 10 of the Hot 100. 'I Gotta Feeling' became the first single to sell more than one million downloads in the United Kingdom.</P><P>The Black Eyed Peas were ranked 12th on Billboard's Decade-End Chart Artist of the Decade, and 7th in the Hot 100 Artists of the Decade. At the 52nd Grammy Awards ceremony, held in January 2010, they won three awards out of six nominations. In November 2010, they released the album The Beginning. In February 2011, the group performed at the Super Bowl XLV halftime show. The album's first two singles, 'The Time (Dirty Bit)' and 'Just Can't Get Enough', became international hits and topped the charts in many countries. The single 'Don't Stop the Party' became an international hit too.</P>"
+        }
+
     ]
+
+
+
 }

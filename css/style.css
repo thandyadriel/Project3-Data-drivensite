@@ -35,7 +35,6 @@ body h2{
 
     #menuPage{
     margin: 0 auto;
-
     width: 370px;
     height: 40px;
 }
@@ -45,14 +44,14 @@ body h2{
     margin: 0 auto;
     position: relative;
     height: 40px;
-    width: 30%;
+    width: 24%;
     text-align: center;
     border-radius: 10px 10px 0px 0px;
     padding-top: 10px;
+    float: left;
 }
 
-        #artista{ float: left; }
-        #album{ float: right;}
+
 
     #page{
 
@@ -113,6 +112,7 @@ body h2{
             }
 
         .musicasSlide{
+
             font-weight: bold;
             color: #ffffff;
             font-size: 20px;
@@ -123,7 +123,7 @@ body h2{
             padding-bottom: 15px;
             padding-top: 5px;
         }
-            .itemMusica{
+            .agora, .itemMusica{
                 color:  #101052;
                 margin: 0 auto;
                 position: relative;
@@ -142,6 +142,12 @@ body h2{
                 display: block;
                 overflow: auto;
             }
+            .agora{
+                background: none;
+                color: #fff;
+                background-color: #5c5c5c;
+
+            }
 
                 .playMusic, .addMusic{
                     color: #ffffff;
@@ -153,21 +159,54 @@ body h2{
                     float: left;
                 }
 
-                .nomeMusica{
+                .nomeAgora, .nomeMusica{
                     padding-left: 3px;
-                    width: 50%;
+                    width: 35%;
                     font-size: 15px;
                     text-align: left;
                     float: left;
+
+                    height: auto;
                 }
-                .generoMusica{
+                .nomeAgora{
+                    width: 50%;
+
+                }
+               .autorAgora, .generoMusica{
                     padding-right: 3px;
-                    width: 30%;
+                    width: 18%;
                     font-size: 15px;
-                    text-align: right;
+                    text-align: center;
+
+                    height: auto;
+                    float: left;
+                    margin-left: 3px;
+                    overflow: hidden;
+                }
+
+                .autorAgora{
+
+                    width: 20%;
                     float: right;
                 }
 
+                .albumAgora, .albumMusica{
+                    padding-right: 3px;
+                    width: 24%;
+                    font-size: 14px;
+                    text-align: right;
+
+                    float: right;
+                    height: auto;
+                    margin-left: 5px;
+                    overflow: hidden;
+                }
+            .albumAgora{
+
+                width: 20%;
+                overflow: hidden;
+                height: 20px;
+            }
 
 
 #pesquisa{
@@ -220,9 +259,15 @@ body h2{
     background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#fff)) repeat-x;
 
     border-radius: 10px;
+
 }
 
     #listConteudo{
+        border-width: medium;
+        border-left: 0px;
+        border-right: 0px;
+        border-style: solid;
+        border-color: #696969;
     color: #fff;
     position: absolute;
     height: 370px;
@@ -231,7 +276,71 @@ body h2{
     left: 15px;
     bottom: 15px;
     border-radius: 10px;
+    overflow: auto;
 }
+
+#artistPage, #tocandoPage{
+    display: none;
+}
+
+
+
+
+
+
+
+
+        .biogragiaArt{
+            color:  #101052;;
+            margin: 0 auto;
+            margin-top: 8px;
+            background: -moz-linear-gradient(top,  #ddd, #fff) repeat-X;
+            /* Google Chrome */
+            background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#fff)) repeat-x;
+            position: relative;
+            width: 90%;
+            height: auto;
+            overflow: auto;
+            padding: 8px;
+            border-radius: 10px;
+        }
+
+        .photoArt{
+            background-size:100% 100%;
+            width: 150px;
+            height: 150px;
+            background-color: black;
+            float: left;
+            margin-right: 15px;
+            margin-bottom: 5px;
+            border-radius: 10px;
+        }
+        .bioNameArt{
+            text-align: center;
+            width: 145px;
+            height: auto;
+            position: relative;
+            top: 0px;
+            float: right;
+            padding: 10px;
+            padding-bottom: 20px;
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 0px;
+        }
+        .bioTexto{
+            position: relative;
+            text-align: justify;
+
+        }
+
+
+
+
+
+
+
+
 
 
 
@@ -277,14 +386,12 @@ body h2{
     /* Google Chrome */
     background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#fff)) repeat-x;
     border-radius: 10px;
-
 }
 
 #nomeCantor{
     width: 30%;
     float: left;
-
-
+    overflow-x: hidden;
 }
 
 #nomeMusica{
