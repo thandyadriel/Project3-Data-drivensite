@@ -93,8 +93,465 @@ $(document).ready(function(){
     })
 
 
+ //FUNCAO RELACIONADA AOS ALBUMS
+    function showAlb(){
+        $("#page").html("");
+        $("#album").css("backgroundColor", "#696969").css("color", "#fff");
+        $("#artista, #genero").css("backgroundColor", "transparent").css("color", "#101052");
+
+        $.getJSON("data/listaM.json",function(data){
+            musicas = data.music;
+            biografia = data.information;
+            var arArt = new Array();
+            console.log(biografia);
+            for(var x=0; x < musicas.length; x++){
+                var existe=0;
+                for (var y=0; y<arArt.length; y++){
+                    if(arArt[y] == musicas[x].album){ existe=1;}
+                }
+                if(existe == 0){
+                    arArt[y] = musicas[x].album;
+
+                }
+            }
+            console.log("meuArray "+arArt);
 
 
+// CRIA MENU SANFONA ARTISTA
+
+//CRIA LISTA DE ARTISTAS
+            for(var x=0; x< arArt.length;x++){
+                var varPageArt = "" +
+                    "<div class='pageArt'>"+
+                    "<div class='btnPlayArt "+ arArt[x].replace(/\s/g, "") +"'  value = '"+ arArt[x].replace(/\s/g, "") +"'> Play </div>"+
+                    "<div class='btnMusicArt "+ arArt[x].replace(/\s/g, "") +"' value = '"+ arArt[x].replace(/\s/g, "") +"'> Music</div>"+
+                    "<div class='nomeArt "+ arArt[x].replace(/\s/g, "") +"' value = '"+ arArt[x].replace(/\s/g, "") +"'>"+ arArt[x] +"</div>"+
+                    "<div class='musicasSlide "+ arArt[x].replace(/\s/g, "") +"' value = '"+ arArt[x].replace(/\s/g, "") +"'>Musicas"+
+                    "<div class='listaMusicasAqui "+ arArt[x].replace(/\s/g, "") +"' value = '"+ arArt[x].replace(/\s/g, "") +"'>";
+
+
+//CRIA LISTA DE MUSICAS
+                for(var j=0; j < musicas.length; j++){
+                    if(musicas[j].album == arArt[x]){
+                        var varPageArt = varPageArt +
+                            "<div class='itemMusica "+ musicas[j].name.replace(/\s/g, "") +"' value = '"+ musicas[j].name.replace(/\s/g, "") +"'>"+
+                            "<div class='playMusic "+ musicas[j].name.replace(/\s/g, "") +"' value = '"+ musicas[j].name.replace(/\s/g, "") +"'> > </div>"+
+                            "<div class='addMusic "+ musicas[j].name.replace(/\s/g, "") +"'value = '"+ musicas[j].name.replace(/\s/g, "") +"'> + </div>"+
+                            "<div class= 'nomeMusica "+ musicas[j].name.replace(/\s/g, "") +"' value = '"+ musicas[j].name.replace(/\s/g, "") +"'>"+ musicas[j].name+"</div>"+
+                            "<div class='albumMusica "+ musicas[j].album.replace(/\s/g, "") +"' value = '"+ musicas[j].album.replace(/\s/g, "") +"'> "+musicas[j].album+" </div>"+
+                            "<div class='generoMusica "+ musicas[j].genre.replace(/\s/g, "") +"' value = '"+ musicas[j].genre.replace(/\s/g, "") +"'> "+musicas[j].genre+" </div>"+
+                            "</div>";
+
+
+                    }
+
+                }
+
+                varPageArt = varPageArt + "</div>"+   "</div>";
+                $("#page").append(varPageArt);
+
+            }
+
+//FAZER COISAS RELACIONADAS AOS ARTISTAS
+
+            $('.pageArt .btnPlayArt, .pageArt .btnMusicArt, .pageArt .nomeArt').click(function(){
+                var idvalue = $(this).attr('value');
+                var idclass = $(this).attr("class");
+
+
+
+                console.log("class "+idclass);
+                console.log("value "+idvalue);
+                idclass = idclass.replace(" "+idvalue, "");
+                console.log("thandy: "+idclass)
+
+//MOSTRA  E OCULTA MUSICAS DO ARTISTA
+
+                if(idclass == "btnMusicArt"){// show music
+                    var correnteArtMusic;
+                    correnteArtMusic = idvalue;
+                    console.log("class "+idvalue);
+
+                    $(".musicasSlide").slideUp("slow");
+                    $("."+correnteArtMusic).slideDown("slow");
+                    //$("."+correnteArtMusic).slideToggle("slow");
+
+                }
+
+// TOCA TODAS AS MUSICAS DO ARTISTA QUE FOR CLICADO
+
+                else  if(idclass == "btnPlayArt"){ //play the list
+                    index = 0;
+
+                    var posicao = -1;
+                    var currentPlaylist = new Array();
+                    for(var j=0; j < musicas.length; j++){
+                        if(musicas[j].album.replace(/\s/g, "") == idvalue){
+                            //currentPlaylist.push(musicas[j]);
+                            posicao++;
+                            currentPlaylist[posicao] = musicas[j];
+                        }
+                    }
+                    console.log("lista de repro: before>");
+                    console.log(playingNow);
+                    playingNow.splice(0,playingNow.length);
+                    // playingNow = new Array();
+                    //playingNow.length = 1;
+                    playingNow.length = currentPlaylist.length;
+                    playingNow = currentPlaylist;
+                    console.log("lista de repro: after>");
+                    console.log(playingNow);
+                    ocupado = 0;
+                    executar(playingNow);
+                    $("#tocandoPage").html("");
+                    for(var j=0; j < playingNow.length; j++){
+                        console.log(playingNow[j].local);
+                        var escreve =  "<div class='agora "+ playingNow[j].local +"'>"+
+                            "<div class= 'nomeAgora'> "+ playingNow[j].name +" </div>"+
+                            "<div class='albumAgora'> "+ playingNow[j].album +" </div>"+
+                            "<div class='autorAgora'> "+ playingNow[j].artist +" </div>"+
+                            "</div>";
+                        $("#tocandoPage").append(escreve);
+                        showPlaylist();
+                    }
+
+
+                    // alert("play artist'songs:"  + "."+idclass+"."+idvalue);
+                    //$("."+idclass+"."+idvalue).css("backgroundColor", "#0f0");
+                }
+
+// MOSTRA A BIOGRAFIA DO ARTISTA CLICADO
+
+                else if (idclass == "nomeArt"){ // show artist info
+
+                    for(var i = 0; i<biografia.length; i++){
+
+                        if (biografia[i].artist.replace(/\s/g, "") == idvalue){
+
+                            var varPageArt = "<div class = 'biogragiaArt'>"+
+                                "<div class='photoArt'></div> <div class='bioNameArt'> "+ biografia[i].artist +" </div>"+
+                                "<div class='bioTexto'> "+ biografia[i].texto +" </div>"+
+                                "</div>";
+
+                            showArtist();
+                            $("#artistPage").html(varPageArt);
+                            $(".photoArt").css("background-image", "url('photo/"+ biografia[i].picture +"')");
+                            console.log(biografia[i].picture);
+
+                        }
+                    }
+                }
+
+// ADICIONA UMA UNICA MUSICA DO ARTISTA PARA A PLAYLIST
+
+
+
+
+            });
+
+
+//FAZER COISAS RELACIONADAS AS MUSICAS
+
+            $('.itemMusica div').click(function(){
+                var idvalue = $(this).attr('value');
+                var idclass = $(this).attr("class");
+
+                console.log("Musicas value "+idvalue);
+                console.log("Musicas class "+idclass);
+                idclass = idclass.replace(" "+idvalue, "");
+
+//ADICIONAR MUSICA A LISTA
+
+                if (idclass == "addMusic"){
+                    var size = playingNow.length;
+
+                    console.log("playlist notmal: ");
+                    console.log(playingNow);
+
+                    for(var j=0; j < musicas.length; j++){
+                        if(musicas[j].name.replace(/\s/g, "") == idvalue){
+                            playingNow[size] = musicas[j];
+                        }
+                    }
+                    console.log("depois de add>");
+                    console.log(playingNow);
+
+                    var escreve =  "<div class='agora "+ playingNow[size].local +"'>"+
+                        "<div class= 'nomeAgora'> "+ playingNow[size].name +" </div>"+
+                        "<div class='albumAgora'> "+ playingNow[size].album +" </div>"+
+                        "<div class='autorAgora'> "+ playingNow[size].artist +" </div>"+
+                        "</div>";
+                    $("#tocandoPage").append(escreve);
+
+                }
+
+
+//TOCAR UMA NOVA MUSICA
+
+                else if (idclass == "playMusic"){
+                    index = 0;
+                    playingNow.length = 1;
+                    console.log("playlist notmal: ");
+                    console.log(playingNow);
+
+                    for(var j=0; j < musicas.length; j++){
+                        if(musicas[j].name.replace(/\s/g, "") == idvalue){
+                            playingNow[0] = musicas[j];
+                        }
+                    }
+                    ocupado = 0;
+                    executar(playingNow);
+                    $("#tocandoPage").html("");
+                    for(var j=0; j < playingNow.length; j++){
+                        console.log(playingNow[j].local);
+                        var escreve =  "<div class='agora "+ playingNow[j].local +"'>"+
+                            "<div class= 'nomeAgora'> "+ playingNow[j].name +" </div>"+
+                            "<div class='albumAgora'> "+ playingNow[j].album +" </div>"+
+                            "<div class='autorAgora'> "+ playingNow[j].artist +" </div>"+
+                            "</div>";
+                        $("#tocandoPage").append(escreve);
+                        showPlaylist();
+                    }
+                    //showPlaylist();
+                }
+            })
+
+        });
+
+    }
+
+
+
+
+
+
+
+//FUNCAO RELACIONADA AOS GENEROS
+    function showGen(){
+        $("#page").html("");
+        $("#genero").css("backgroundColor", "#696969").css("color", "#fff");
+        $("#album, #artista").css("backgroundColor", "transparent").css("color", "#101052");
+
+        $.getJSON("data/listaM.json",function(data){
+            musicas = data.music;
+            biografia = data.information;
+            var arArt = new Array();
+            console.log(biografia);
+            for(var x=0; x < musicas.length; x++){
+                var existe=0;
+                for (var y=0; y<arArt.length; y++){
+                    if(arArt[y] == musicas[x].genre){ existe=1;}
+                }
+                if(existe == 0){
+                    arArt[y] = musicas[x].genre;
+
+                }
+            }
+            console.log("meuArray "+arArt);
+
+
+// CRIA MENU SANFONA ARTISTA
+
+//CRIA LISTA DE ARTISTAS
+            for(var x=0; x< arArt.length;x++){
+                var varPageArt = "" +
+                    "<div class='pageArt'>"+
+                    "<div class='btnPlayArt "+ arArt[x].replace(/\s/g, "") +"'  value = '"+ arArt[x].replace(/\s/g, "") +"'> Play </div>"+
+                    "<div class='btnMusicArt "+ arArt[x].replace(/\s/g, "") +"' value = '"+ arArt[x].replace(/\s/g, "") +"'> Music</div>"+
+                    "<div class='nomeArt "+ arArt[x].replace(/\s/g, "") +"' value = '"+ arArt[x].replace(/\s/g, "") +"'>"+ arArt[x] +"</div>"+
+                    "<div class='musicasSlide "+ arArt[x].replace(/\s/g, "") +"' value = '"+ arArt[x].replace(/\s/g, "") +"'>Musicas"+
+                    "<div class='listaMusicasAqui "+ arArt[x].replace(/\s/g, "") +"' value = '"+ arArt[x].replace(/\s/g, "") +"'>";
+
+
+//CRIA LISTA DE MUSICAS
+                for(var j=0; j < musicas.length; j++){
+                    if(musicas[j].genre == arArt[x]){
+                        var varPageArt = varPageArt +
+                            "<div class='itemMusica "+ musicas[j].name.replace(/\s/g, "") +"' value = '"+ musicas[j].name.replace(/\s/g, "") +"'>"+
+                            "<div class='playMusic "+ musicas[j].name.replace(/\s/g, "") +"' value = '"+ musicas[j].name.replace(/\s/g, "") +"'> > </div>"+
+                            "<div class='addMusic "+ musicas[j].name.replace(/\s/g, "") +"'value = '"+ musicas[j].name.replace(/\s/g, "") +"'> + </div>"+
+                            "<div class= 'nomeMusica "+ musicas[j].name.replace(/\s/g, "") +"' value = '"+ musicas[j].name.replace(/\s/g, "") +"'>"+ musicas[j].name+"</div>"+
+                            "<div class='albumMusica "+ musicas[j].album.replace(/\s/g, "") +"' value = '"+ musicas[j].album.replace(/\s/g, "") +"'> "+musicas[j].album+" </div>"+
+                            "<div class='generoMusica "+ musicas[j].genre.replace(/\s/g, "") +"' value = '"+ musicas[j].genre.replace(/\s/g, "") +"'> "+musicas[j].genre+" </div>"+
+                            "</div>";
+
+
+                    }
+
+                }
+
+                varPageArt = varPageArt + "</div>"+   "</div>";
+                $("#page").append(varPageArt);
+
+            }
+
+//FAZER COISAS RELACIONADAS AOS ARTISTAS
+
+            $('.pageArt .btnPlayArt, .pageArt .btnMusicArt, .pageArt .nomeArt').click(function(){
+                var idvalue = $(this).attr('value');
+                var idclass = $(this).attr("class");
+
+
+
+                console.log("class "+idclass);
+                console.log("value "+idvalue);
+                idclass = idclass.replace(" "+idvalue, "");
+                console.log("thandy: "+idclass)
+
+//MOSTRA  E OCULTA MUSICAS DO ARTISTA
+
+                if(idclass == "btnMusicArt"){// show music
+                    var correnteArtMusic;
+                    correnteArtMusic = idvalue;
+                    console.log("class "+idvalue);
+
+                    $(".musicasSlide").slideUp("slow");
+                    $("."+correnteArtMusic).slideDown("slow");
+                    //$("."+correnteArtMusic).slideToggle("slow");
+
+                }
+
+// TOCA TODAS AS MUSICAS DO ARTISTA QUE FOR CLICADO
+
+                else  if(idclass == "btnPlayArt"){ //play the list
+                    index = 0;
+
+                    var posicao = -1;
+                    var currentPlaylist = new Array();
+                    for(var j=0; j < musicas.length; j++){
+                        if(musicas[j].genre.replace(/\s/g, "") == idvalue){
+                            //currentPlaylist.push(musicas[j]);
+                            posicao++;
+                            currentPlaylist[posicao] = musicas[j];
+                        }
+                    }
+                    console.log("lista de repro: before>");
+                    console.log(playingNow);
+                    playingNow.splice(0,playingNow.length);
+                    // playingNow = new Array();
+                    //playingNow.length = 1;
+                    playingNow.length = currentPlaylist.length;
+                    playingNow = currentPlaylist;
+                    console.log("lista de repro: after>");
+                    console.log(playingNow);
+                    ocupado = 0;
+                    executar(playingNow);
+                    $("#tocandoPage").html("");
+                    for(var j=0; j < playingNow.length; j++){
+                        console.log(playingNow[j].local);
+                        var escreve =  "<div class='agora "+ playingNow[j].local +"'>"+
+                            "<div class= 'nomeAgora'> "+ playingNow[j].name +" </div>"+
+                            "<div class='albumAgora'> "+ playingNow[j].album +" </div>"+
+                            "<div class='autorAgora'> "+ playingNow[j].artist +" </div>"+
+                            "</div>";
+                        $("#tocandoPage").append(escreve);
+                        showPlaylist();
+                    }
+
+
+                    // alert("play artist'songs:"  + "."+idclass+"."+idvalue);
+                    //$("."+idclass+"."+idvalue).css("backgroundColor", "#0f0");
+                }
+
+// MOSTRA A BIOGRAFIA DO ARTISTA CLICADO
+
+                else if (idclass == "nomeArt"){ // show artist info
+
+                    for(var i = 0; i<biografia.length; i++){
+
+                        if (biografia[i].artist.replace(/\s/g, "") == idvalue){
+
+                            var varPageArt = "<div class = 'biogragiaArt'>"+
+                                "<div class='photoArt'></div> <div class='bioNameArt'> "+ biografia[i].artist +" </div>"+
+                                "<div class='bioTexto'> "+ biografia[i].texto +" </div>"+
+                                "</div>";
+
+                            showArtist();
+                            $("#artistPage").html(varPageArt);
+                            $(".photoArt").css("background-image", "url('photo/"+ biografia[i].picture +"')");
+                            console.log(biografia[i].picture);
+
+                        }
+                    }
+                }
+
+// ADICIONA UMA UNICA MUSICA DO ARTISTA PARA A PLAYLIST
+
+
+
+
+            });
+
+
+//FAZER COISAS RELACIONADAS AS MUSICAS
+
+            $('.itemMusica div').click(function(){
+                var idvalue = $(this).attr('value');
+                var idclass = $(this).attr("class");
+
+                console.log("Musicas value "+idvalue);
+                console.log("Musicas class "+idclass);
+                idclass = idclass.replace(" "+idvalue, "");
+
+//ADICIONAR MUSICA A LISTA
+
+                if (idclass == "addMusic"){
+                    var size = playingNow.length;
+
+                    console.log("playlist notmal: ");
+                    console.log(playingNow);
+
+                    for(var j=0; j < musicas.length; j++){
+                        if(musicas[j].name.replace(/\s/g, "") == idvalue){
+                            playingNow[size] = musicas[j];
+                        }
+                    }
+                    console.log("depois de add>");
+                    console.log(playingNow);
+
+                    var escreve =  "<div class='agora "+ playingNow[size].local +"'>"+
+                        "<div class= 'nomeAgora'> "+ playingNow[size].name +" </div>"+
+                        "<div class='albumAgora'> "+ playingNow[size].album +" </div>"+
+                        "<div class='autorAgora'> "+ playingNow[size].artist +" </div>"+
+                        "</div>";
+                    $("#tocandoPage").append(escreve);
+
+                }
+
+
+//TOCAR UMA NOVA MUSICA
+
+                else if (idclass == "playMusic"){
+                    index = 0;
+                    playingNow.length = 1;
+                    console.log("playlist notmal: ");
+                    console.log(playingNow);
+
+                    for(var j=0; j < musicas.length; j++){
+                        if(musicas[j].name.replace(/\s/g, "") == idvalue){
+                            playingNow[0] = musicas[j];
+                        }
+                    }
+                    ocupado = 0;
+                    executar(playingNow);
+                    $("#tocandoPage").html("");
+                    for(var j=0; j < playingNow.length; j++){
+                        console.log(playingNow[j].local);
+                        var escreve =  "<div class='agora "+ playingNow[j].local +"'>"+
+                            "<div class= 'nomeAgora'> "+ playingNow[j].name +" </div>"+
+                            "<div class='albumAgora'> "+ playingNow[j].album +" </div>"+
+                            "<div class='autorAgora'> "+ playingNow[j].artist +" </div>"+
+                            "</div>";
+                        $("#tocandoPage").append(escreve);
+                        showPlaylist();
+                    }
+                    //showPlaylist();
+                }
+            })
+
+        });
+
+    }
 
 
 
