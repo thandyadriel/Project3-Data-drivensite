@@ -7,8 +7,11 @@ $(document).ready(function(){
     var tamanho; // it stores the duration of current music
     var isItPlaying = 0; //it defines what the button play should do
     var playingNow;
-
+    var ocupado = 0;
     var biografia;
+    var setCu;
+    var setDu;
+    var loading;
 
 //$(".btnMusicArt").click(function(){
     //   $(".misicasSlide").slideToggle("slow");
@@ -187,6 +190,7 @@ $(document).ready(function(){
 
                    else  if(idclass == "btnPlayArt"){ //play the list
                         index = 0;
+
                         var posicao = -1;
                         var currentPlaylist = new Array();
                         for(var j=0; j < musicas.length; j++){
@@ -205,7 +209,7 @@ $(document).ready(function(){
                         playingNow = currentPlaylist;
                         console.log("lista de repro: after>");
                         console.log(playingNow);
-
+                        ocupado = 0;    
                         executar(playingNow);
                         $("#tocandoPage").html("");
                         for(var j=0; j < playingNow.length; j++){
@@ -303,6 +307,7 @@ $(document).ready(function(){
                             playingNow[0] = musicas[j];
                         }
                     }
+                    ocupado = 0;
                     executar(playingNow);
                     $("#tocandoPage").html("");
                     for(var j=0; j < playingNow.length; j++){
@@ -339,19 +344,30 @@ $(document).ready(function(){
 
     function executar(refmusica){
 
+        if (ocupado == 0){
+            ocupado =1;
+            loading = true;
+            console.log("ocupado: "+ ocupado);        
     escreveInfo(refmusica);
         minhaMusica.load();
         minhaMusica.addEventListener("canplay", function(){
-            mudaCor(refmusica);
+            loading = false;
             console.log("can: "+minhaMusica.duration.toFixed(0));
             tamanho = minhaMusica.duration.toFixed(0);
             tamanho = tamanho*1000;
             escreveTempo();
         });
 
-        minhaMusica.play();
+            minhaMusica.play();
+            return;
+        }
 
-        setInterval(function(){
+    }
+
+
+        
+
+    setInterval(function(){
 
             var atual = minhaMusica.currentTime.toFixed(0);
             var tam = minhaMusica.duration.toFixed(0);
@@ -359,26 +375,36 @@ $(document).ready(function(){
             //console.log("duaracao: "+ tam/15);
             console.log("contador: "+index);
             $("#inde").html(index);
-            $("#vete").html(refmusica.length);
+            $("#vete").html(playingNow.length);
 
 
             if( atual >= tam/80){
-                if(index<refmusica.length){
+                if(index<playingNow.length){
                     index++;
-                    executar(refmusica);
+                    //exeW = executar(refmusica);
+                    //exeW = clearTimeout(exeW);
+                    //setCu = clearTimeout(setCu);
+                    setDu = clearTimeout(setDu);
+                    ocupado = 0;
+
+                    if(!loading) executar(playingNow);
+                    
                 }else{alert("The playlist is over!"); stopMusic(); index=0;}
             }
             else{}
         }, 1000);
-    }
+
+    setCu = setInterval(function(){
+            $("#correnteTime").html(correnteTime());
+            barraStatus();
+        }, 1000);
+
+
 
     function escreveTempo(){ //write current and duration time on screen and move the status bar
 
         $("#totalTime").html(duracaoTime());
-        setInterval(function(){
-            $("#correnteTime").html(correnteTime());
-            barraStatus();
-        }, 1000);
+        
 
     }
 
@@ -418,13 +444,13 @@ $(document).ready(function(){
 
     }
 
-    function mudaCor(refmusica){
+    function mudaCor(){
 
 
         console.log ("mudando cor");
         $(".agora").css("font-weight", "normal").css("backgroundColor","#5c5c5c");
 
-        $('.agora.'+refmusica[index].local).css("font-weight", "bold").css("backgroundColor", "#464646");
+        $('.agora.'+currentPlaylist[index].local).css("font-weight", "bold").css("backgroundColor", "#464646");
        console.log ("ja foi mudando cor");
     }
 
