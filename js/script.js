@@ -40,6 +40,7 @@ $(document).ready(function(){
 
         if(isItPlaying == 0){//first time.. just play starting of the first music
             index = 0;
+
             executar(playingNow);
 
             $("#tocandoPage").html("");
@@ -346,19 +347,19 @@ $(document).ready(function(){
 
         if (ocupado == 0){
             ocupado =1;
-            loading = true;
+            
             console.log("ocupado: "+ ocupado);        
-    escreveInfo(refmusica);
-        minhaMusica.load();
-        minhaMusica.addEventListener("canplay", function(){
-            loading = false;
+             escreveInfo(refmusica);
+             minhaMusica.load();
+             minhaMusica.addEventListener("canplay", function(){
+            
             console.log("can: "+minhaMusica.duration.toFixed(0));
             tamanho = minhaMusica.duration.toFixed(0);
             tamanho = tamanho*1000;
-            escreveTempo();
+            escreveTempo(refmusica);
         });
 
-            minhaMusica.play();
+            minhaMusica.play(); 
             return;
         }
 
@@ -386,8 +387,8 @@ $(document).ready(function(){
                     //setCu = clearTimeout(setCu);
                     setDu = clearTimeout(setDu);
                     ocupado = 0;
-
-                    if(!loading) executar(playingNow);
+                    stopMusic();
+                    executar(playingNow);
                     
                 }else{alert("The playlist is over!"); stopMusic(); index=0;}
             }
@@ -401,9 +402,10 @@ $(document).ready(function(){
 
 
 
-    function escreveTempo(){ //write current and duration time on screen and move the status bar
+    function escreveTempo(ref){ //write current and duration time on screen and move the status bar
 
         $("#totalTime").html(duracaoTime());
+        mudaCor(ref);
         
 
     }
@@ -444,13 +446,12 @@ $(document).ready(function(){
 
     }
 
-    function mudaCor(){
-
+    function mudaCor(ref){
 
         console.log ("mudando cor");
         $(".agora").css("font-weight", "normal").css("backgroundColor","#5c5c5c");
 
-        $('.agora.'+currentPlaylist[index].local).css("font-weight", "bold").css("backgroundColor", "#464646");
+        $('.agora.'+ref[index].local).css("font-weight", "bold").css("backgroundColor", "#464646");
        console.log ("ja foi mudando cor");
     }
 
