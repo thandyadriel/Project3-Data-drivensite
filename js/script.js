@@ -12,6 +12,8 @@ $(document).ready(function(){
     var setCu;
     var setDu;
     var loading;
+    var theEnd =0;
+
 
 //$(".btnMusicArt").click(function(){
     //   $(".misicasSlide").slideToggle("slow");
@@ -50,12 +52,11 @@ showArt();
 
         if(isItPlaying == 0){//first time.. just play starting of the first music
             index = 0;
-
+            itIsTheEnd = 0;
             executar(playingNow);
             escreveLista();
-
-
-            isItPlaying = 1;// it is playing
+            theEnd = 0;// it is playing
+            isItPlaying = 1;
             $("#toPlay").html("Pause");// the button became pause
         }
 
@@ -74,9 +75,6 @@ showArt();
         });
 
     $("#stop").unbind().click(function(){
-            console.log(" lista e I");
-            console.log(playingNow);
-            console.log(index);
         stopMusic();//it starts from the first music
     });
 
@@ -196,17 +194,7 @@ showArt();
             }
         })
 
-
-
-
-
-
-
-
-
-
     });
-
 
  //FUNCAO RELACIONADA AOS ALBUMS
     function showAlb(){
@@ -882,8 +870,13 @@ showArt();
     }
 
     function stopMusic(){// stop music
+        isItPlaying=2;
+        index=0;
         minhaMusica.load();
-        isItPlaying = 2;
+        minhaMusica.addEventListener("canplay", function(){
+            minhaMusica.pause();
+        });
+
         $("#barraIn").css("width","0px");
         $("#toPlay").html("Play");
     }
@@ -897,48 +890,43 @@ showArt();
 
     function executar(refmusica){
 
-        if (ocupado == 0){
+        if (ocupado == 0 && theEnd==0){
             ocupado =1;
+            isItPlaying = 1;
             mexer("#boxPlayer")
             escreveInfo(refmusica);
              minhaMusica.load();
              minhaMusica.addEventListener("canplay", function(){
-             tamanho = minhaMusica.duration.toFixed(0);
-             tamanho = tamanho*1000;
-            escreveTempo(refmusica);
+                 tamanho = minhaMusica.duration.toFixed(0);
+                 tamanho = tamanho*1000;
+                 escreveTempo(refmusica);
                  minhaMusica.play();
              });
 
-
-            return;
         }
-
+        return;
     }
 
-    setInterval(function(){
+   faztudo =  setInterval(function(){
 
-            var atual = minhaMusica.currentTime.toFixed(0);
-            var tam = minhaMusica.duration.toFixed(0);
-            console.log("atual: "+atual);
-            console.log("tam: "+tam);
-
+       var atual = minhaMusica.currentTime.toFixed(0);
+       var tam = minhaMusica.duration.toFixed(0);
         var hsua = index+1;
         var info = "Playing music "+hsua+" of "+playingNow.length+"...";
         if(playingNow.length == 0){$("#numberMusic").html("Waiting new music...");}
         else{$("#numberMusic").html(info);}
 
-            if( atual == tam){
+            if( atual == tam ){
 
                 if(index<playingNow.length-1){
                     index++;
                     ocupado = 0;
-                    stopMusic();
                     executar(playingNow);
                     setDu = clearTimeout(setDu);
-                }else{alert("The playlist is over!"); stopMusic(); index=0;}
+                }else{ stopMusic();}
             }
             else{console.log("ainda nao é o momento..");}
-        }, 1000);
+    }, 1000);
 
     setCu = setInterval(function(){
             $("#correnteTime").html(correnteTime());
@@ -946,12 +934,9 @@ showArt();
         }, 1000);
 
     function escreveTempo(ref){ //write current and duration time on screen and move the status bar
-
         $("#totalTime").html(duracaoTime());
         mudaCor(ref);
         showArtInformation();
-        
-
     }
 
     function duracaoTime(){//it formats the number's style of duration time
