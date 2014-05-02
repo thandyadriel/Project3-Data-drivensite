@@ -6,7 +6,7 @@ $(document).ready(function(){
     var index = 0; //it is the index
     var tamanho; // it stores the duration of current music
     var isItPlaying = 0; //it defines what the button play should do
-    var playingNow;
+    var playingNow = new Array();
     var ocupado = 0;
     var biografia;
     var setCu;
@@ -20,9 +20,10 @@ $(document).ready(function(){
 
 //to get data from json
     $.getJSON("data/listaM.json",function(data){
-        musicas = data.music;
-        playingNow = musicas;
-        console.log(musicas);
+       musicas = data.music;
+       // playingNow = musicas;
+        //console.log(musicas);
+    //    escreveLista();
     });
 
 
@@ -32,28 +33,27 @@ $(document).ready(function(){
 
 
 
+showArt();
 
 //get the music
    var minhaMusica = document.getElementById("myAudio");
 
-   $("#toPlay").click(function(){
+    $("#playingNow").unbind().click(function(){
+       escreveLista();
+    });
+
+    $("#CurrentArt").unbind().click(function(){
+        showArtist();
+    });
+
+   $("#toPlay").unbind().click(function(){
 
         if(isItPlaying == 0){//first time.. just play starting of the first music
             index = 0;
 
             executar(playingNow);
+            escreveLista();
 
-            $("#tocandoPage").html("");
-            for(var j=0; j < playingNow.length; j++){
-                console.log(playingNow[j].local);
-                var escreve =  "<div class='agora "+ playingNow[j].local +"'>"+
-                    "<div class= 'nomeAgora'> "+ playingNow[j].name +" </div>"+
-                    "<div class='albumAgora'> "+ playingNow[j].album +" </div>"+
-                    "<div class='autorAgora'> "+ playingNow[j].artist +" </div>"+
-                    "</div>";
-                $("#tocandoPage").append(escreve);
-                showPlaylist();
-            }
 
             isItPlaying = 1;// it is playing
             $("#toPlay").html("Pause");// the button became pause
@@ -73,22 +73,22 @@ $(document).ready(function(){
 
         });
 
-    $("#stop").click(function(){
+    $("#stop").unbind().click(function(){
             console.log(" lista e I");
             console.log(playingNow);
             console.log(index);
-        //stopMusic();//it starts from the first music
+        stopMusic();//it starts from the first music
     });
 
-    $("#artista").click(function(){
+    $("#artista").unbind().click(function(){
         showArt();
     })
 
-    $("#genero").click(function(){
+    $("#genero").unbind().click(function(){
         showGen();
     })
 
-    $("#album").click(function(){
+    $("#album").unbind().click(function(){
         showAlb();
     })
 
@@ -101,9 +101,11 @@ $(document).ready(function(){
 
         $.getJSON("data/listaM.json",function(data){
             musicas = data.music;
-            biografia = data.information;
+
             var arArt = new Array();
-            console.log(biografia);
+            var genero;
+            var varPageArt;
+
             for(var x=0; x < musicas.length; x++){
                 var existe=0;
                 for (var y=0; y<arArt.length; y++){
@@ -114,32 +116,56 @@ $(document).ready(function(){
 
                 }
             }
-            console.log("meuArray "+arArt);
+           // console.log("meuArray "+arArt);
 
 
 // CRIA MENU SANFONA ARTISTA
 
 //CRIA LISTA DE ARTISTAS
             for(var x=0; x< arArt.length;x++){
-                var varPageArt = "" +
-                    "<div class='pageArt'>"+
-                    "<div class='btnPlayArt "+ arArt[x].replace(/\s/g, "") +"'  value = '"+ arArt[x].replace(/\s/g, "") +"'> Play </div>"+
-                    "<div class='btnMusicArt "+ arArt[x].replace(/\s/g, "") +"' value = '"+ arArt[x].replace(/\s/g, "") +"'> Music</div>"+
-                    "<div class='nomeArt "+ arArt[x].replace(/\s/g, "") +"' value = '"+ arArt[x].replace(/\s/g, "") +"'>"+ arArt[x] +"</div>"+
-                    "<div class='musicasSlide "+ arArt[x].replace(/\s/g, "") +"' value = '"+ arArt[x].replace(/\s/g, "") +"'>Musicas"+
-                    "<div class='listaMusicasAqui "+ arArt[x].replace(/\s/g, "") +"' value = '"+ arArt[x].replace(/\s/g, "") +"'>";
+                varPageArt = "<div class='pageArt'>"+
+                        "<div class='btnPlayArt "+ arArt[x].replace(/\s/g, "") +"'  value = '"+ arArt[x].replace(/\s/g, "") +"'> Play </div>"+
+                        "<div class='btnMusicArt "+ arArt[x].replace(/\s/g, "") +"' value = '"+ arArt[x].replace(/\s/g, "") +"'> M</div>"+
+                        "<div class='btnGenreArt "+ arArt[x].replace(/\s/g, "") +"' value = '"+ arArt[x].replace(/\s/g, "") +"'> G</div>"+
+                        "<div class='nomeArt "+ arArt[x].replace(/\s/g, "") +"' value = '"+ arArt[x].replace(/\s/g, "") +"'>"+ arArt[x] +"</div>"+
+           "<div class='musicasSlide "+ arArt[x].replace(/\s/g, "") +"' value = '"+ arArt[x].replace(/\s/g, "") +"'> Musics <div class='listaMusicasAqui'>";
+
 
 
 //CRIA LISTA DE MUSICAS
                 for(var j=0; j < musicas.length; j++){
                     if(musicas[j].album == arArt[x]){
-                        var varPageArt = varPageArt +
-                            "<div class='itemMusica "+ musicas[j].name.replace(/\s/g, "") +"' value = '"+ musicas[j].name.replace(/\s/g, "") +"'>"+
+                        genero = musicas[j].genre;
+                         varPageArt = varPageArt +"<div class='itemMusica "+musicas[j].name.replace(/\s/g, "")+"' value = '"+ musicas[j].name.replace(/\s/g, "") +"'>"+
                             "<div class='playMusic "+ musicas[j].name.replace(/\s/g, "") +"' value = '"+ musicas[j].name.replace(/\s/g, "") +"'> > </div>"+
                             "<div class='addMusic "+ musicas[j].name.replace(/\s/g, "") +"'value = '"+ musicas[j].name.replace(/\s/g, "") +"'> + </div>"+
                             "<div class= 'nomeMusica "+ musicas[j].name.replace(/\s/g, "") +"' value = '"+ musicas[j].name.replace(/\s/g, "") +"'>"+ musicas[j].name+"</div>"+
-                            "<div class='albumMusica "+ musicas[j].album.replace(/\s/g, "") +"' value = '"+ musicas[j].album.replace(/\s/g, "") +"'> "+musicas[j].album+" </div>"+
+                            "<div class='albumMusica "+ musicas[j].album.replace(/\s/g, "") +"' value = '"+ musicas[j].album.replace(/\s/g, "") +"'> "+musicas[j].artist+" </div>"+
                             "<div class='generoMusica "+ musicas[j].genre.replace(/\s/g, "") +"' value = '"+ musicas[j].genre.replace(/\s/g, "") +"'> "+musicas[j].genre+" </div>"+
+                       "</div>";
+
+
+                    }
+
+                }
+
+
+
+
+
+         varPageArt = varPageArt +"</div></div><div class='genreSlide "+ arArt[x].replace(/\s/g, "") +"' value = '"+ arArt[x].replace(/\s/g, "") +"'>"+ genero +"<div class='listaGenreAqui'>";
+
+
+//CRIA LISTA DE GENRE
+                for(var j=0; j < musicas.length; j++){
+                    if(musicas[j].genre == genero){
+                        varPageArt = varPageArt +
+                           "<div class='itemMusica "+ musicas[j].name.replace(/\s/g, "") +"' value = '"+ musicas[j].name.replace(/\s/g, "") +"'>"+
+                                "<div class='playMusic "+ musicas[j].name.replace(/\s/g, "") +"' value = '"+ musicas[j].name.replace(/\s/g, "") +"'> > </div>"+
+                                "<div class='addMusic "+ musicas[j].name.replace(/\s/g, "") +"'value = '"+ musicas[j].name.replace(/\s/g, "") +"'> + </div>"+
+                                "<div class= 'nomeMusica "+ musicas[j].name.replace(/\s/g, "") +"' value = '"+ musicas[j].name.replace(/\s/g, "") +"'>"+ musicas[j].name+"</div>"+
+                                "<div class='albumMusica "+ musicas[j].album.replace(/\s/g, "") +"' value = '"+ musicas[j].album.replace(/\s/g, "") +"'> "+musicas[j].album+" </div>"+
+                                "<div class='generoMusica "+ musicas[j].genre.replace(/\s/g, "") +"' value = '"+ musicas[j].genre.replace(/\s/g, "") +"'> "+musicas[j].artist+" </div>"+
                             "</div>";
 
 
@@ -147,36 +173,60 @@ $(document).ready(function(){
 
                 }
 
-                varPageArt = varPageArt + "</div>"+   "</div>";
+
+
+
+
+                varPageArt = varPageArt + "</div></div></div>";
                 $("#page").append(varPageArt);
 
             }
 
 //FAZER COISAS RELACIONADAS AOS ARTISTAS
 
-            $('.pageArt .btnPlayArt, .pageArt .btnMusicArt, .pageArt .nomeArt').click(function(){
+            $('.pageArt .btnPlayArt, .pageArt .btnMusicArt, .pageArt .nomeArt, .btnGenreArt').click(function(){
                 var idvalue = $(this).attr('value');
                 var idclass = $(this).attr("class");
 
 
 
-                console.log("class "+idclass);
-                console.log("value "+idvalue);
+               // console.log("class "+idclass);
+               // console.log("value "+idvalue);
                 idclass = idclass.replace(" "+idvalue, "");
-                console.log("thandy: "+idclass)
+               // console.log("thandy: "+idclass)
 
 //MOSTRA  E OCULTA MUSICAS DO ARTISTA
 
                 if(idclass == "btnMusicArt"){// show music
                     var correnteArtMusic;
                     correnteArtMusic = idvalue;
-                    console.log("class "+idvalue);
+                    //console.log("class "+idvalue);
 
-                    $(".musicasSlide").slideUp("slow");
-                    $("."+correnteArtMusic).slideDown("slow");
+                    $(".musicasSlide, .genreSlide").slideUp("slow");
+                    $(".musicasSlide."+correnteArtMusic).slideDown("slow");
+
+                    //console.log("o que esta sendo mostrado: "+correnteArtMusic);
                     //$("."+correnteArtMusic).slideToggle("slow");
 
                 }
+
+
+
+//MOSTRA  E OCULTA genero DO ARTISTA
+
+                if(idclass == "btnGenreArt"){// show genre
+                    var correnteArtMusic;
+                    correnteArtMusic = idvalue;
+                    //console.log("class "+idvalue);
+
+                    $(".musicasSlide, .genreSlide").slideUp("slow");
+                    $(".genreSlide."+correnteArtMusic).slideDown("slow");
+                    //$("."+correnteArtMusic).slideToggle("slow");
+
+                }
+
+
+
 
 // TOCA TODAS AS MUSICAS DO ARTISTA QUE FOR CLICADO
 
@@ -192,28 +242,18 @@ $(document).ready(function(){
                             currentPlaylist[posicao] = musicas[j];
                         }
                     }
-                    console.log("lista de repro: before>");
-                    console.log(playingNow);
+                   // console.log("lista de repro: before>");
+                    console.log(currentPlaylist);
                     playingNow.splice(0,playingNow.length);
                     // playingNow = new Array();
                     //playingNow.length = 1;
                     playingNow.length = currentPlaylist.length;
                     playingNow = currentPlaylist;
-                    console.log("lista de repro: after>");
-                    console.log(playingNow);
+                   // console.log("lista de repro: after>");
+                   // console.log(playingNow);
                     ocupado = 0;
                     executar(playingNow);
-                    $("#tocandoPage").html("");
-                    for(var j=0; j < playingNow.length; j++){
-                        console.log(playingNow[j].local);
-                        var escreve =  "<div class='agora "+ playingNow[j].local +"'>"+
-                            "<div class= 'nomeAgora'> "+ playingNow[j].name +" </div>"+
-                            "<div class='albumAgora'> "+ playingNow[j].album +" </div>"+
-                            "<div class='autorAgora'> "+ playingNow[j].artist +" </div>"+
-                            "</div>";
-                        $("#tocandoPage").append(escreve);
-                        showPlaylist();
-                    }
+                    escreveLista();
 
 
                     // alert("play artist'songs:"  + "."+idclass+"."+idvalue);
@@ -236,7 +276,7 @@ $(document).ready(function(){
                             showArtist();
                             $("#artistPage").html(varPageArt);
                             $(".photoArt").css("background-image", "url('photo/"+ biografia[i].picture +"')");
-                            console.log(biografia[i].picture);
+                            //console.log(biografia[i].picture);
 
                         }
                     }
@@ -301,17 +341,7 @@ $(document).ready(function(){
                     }
                     ocupado = 0;
                     executar(playingNow);
-                    $("#tocandoPage").html("");
-                    for(var j=0; j < playingNow.length; j++){
-                        console.log(playingNow[j].local);
-                        var escreve =  "<div class='agora "+ playingNow[j].local +"'>"+
-                            "<div class= 'nomeAgora'> "+ playingNow[j].name +" </div>"+
-                            "<div class='albumAgora'> "+ playingNow[j].album +" </div>"+
-                            "<div class='autorAgora'> "+ playingNow[j].artist +" </div>"+
-                            "</div>";
-                        $("#tocandoPage").append(escreve);
-                        showPlaylist();
-                    }
+                    escreveLista();
                     //showPlaylist();
                 }
             })
@@ -319,12 +349,6 @@ $(document).ready(function(){
         });
 
     }
-
-
-
-
-
-
 
 //FUNCAO RELACIONADA AOS GENEROS
     function showGen(){
@@ -334,9 +358,9 @@ $(document).ready(function(){
 
         $.getJSON("data/listaM.json",function(data){
             musicas = data.music;
-            biografia = data.information;
+
             var arArt = new Array();
-            console.log(biografia);
+
             for(var x=0; x < musicas.length; x++){
                 var existe=0;
                 for (var y=0; y<arArt.length; y++){
@@ -347,7 +371,7 @@ $(document).ready(function(){
 
                 }
             }
-            console.log("meuArray "+arArt);
+            //console.log("meuArray "+arArt);
 
 
 // CRIA MENU SANFONA ARTISTA
@@ -372,7 +396,7 @@ $(document).ready(function(){
                             "<div class='addMusic "+ musicas[j].name.replace(/\s/g, "") +"'value = '"+ musicas[j].name.replace(/\s/g, "") +"'> + </div>"+
                             "<div class= 'nomeMusica "+ musicas[j].name.replace(/\s/g, "") +"' value = '"+ musicas[j].name.replace(/\s/g, "") +"'>"+ musicas[j].name+"</div>"+
                             "<div class='albumMusica "+ musicas[j].album.replace(/\s/g, "") +"' value = '"+ musicas[j].album.replace(/\s/g, "") +"'> "+musicas[j].album+" </div>"+
-                            "<div class='generoMusica "+ musicas[j].genre.replace(/\s/g, "") +"' value = '"+ musicas[j].genre.replace(/\s/g, "") +"'> "+musicas[j].genre+" </div>"+
+                            "<div class='generoMusica "+ musicas[j].genre.replace(/\s/g, "") +"' value = '"+ musicas[j].genre.replace(/\s/g, "") +"'> "+musicas[j].artist+" </div>"+
                             "</div>";
 
 
@@ -393,17 +417,17 @@ $(document).ready(function(){
 
 
 
-                console.log("class "+idclass);
-                console.log("value "+idvalue);
+                //console.log("class "+idclass);
+                //console.log("value "+idvalue);
                 idclass = idclass.replace(" "+idvalue, "");
-                console.log("thandy: "+idclass)
+               // console.log("thandy: "+idclass)
 
 //MOSTRA  E OCULTA MUSICAS DO ARTISTA
 
                 if(idclass == "btnMusicArt"){// show music
                     var correnteArtMusic;
                     correnteArtMusic = idvalue;
-                    console.log("class "+idvalue);
+                   // console.log("class "+idvalue);
 
                     $(".musicasSlide").slideUp("slow");
                     $("."+correnteArtMusic).slideDown("slow");
@@ -425,28 +449,18 @@ $(document).ready(function(){
                             currentPlaylist[posicao] = musicas[j];
                         }
                     }
-                    console.log("lista de repro: before>");
-                    console.log(playingNow);
+                   // console.log("lista de repro: before>");
+                   // console.log(playingNow);
                     playingNow.splice(0,playingNow.length);
                     // playingNow = new Array();
                     //playingNow.length = 1;
                     playingNow.length = currentPlaylist.length;
                     playingNow = currentPlaylist;
-                    console.log("lista de repro: after>");
-                    console.log(playingNow);
+                   // console.log("lista de repro: after>");
+                  //  console.log(playingNow);
                     ocupado = 0;
                     executar(playingNow);
-                    $("#tocandoPage").html("");
-                    for(var j=0; j < playingNow.length; j++){
-                        console.log(playingNow[j].local);
-                        var escreve =  "<div class='agora "+ playingNow[j].local +"'>"+
-                            "<div class= 'nomeAgora'> "+ playingNow[j].name +" </div>"+
-                            "<div class='albumAgora'> "+ playingNow[j].album +" </div>"+
-                            "<div class='autorAgora'> "+ playingNow[j].artist +" </div>"+
-                            "</div>";
-                        $("#tocandoPage").append(escreve);
-                        showPlaylist();
-                    }
+                    escreveLista();
 
 
                     // alert("play artist'songs:"  + "."+idclass+"."+idvalue);
@@ -469,7 +483,7 @@ $(document).ready(function(){
                             showArtist();
                             $("#artistPage").html(varPageArt);
                             $(".photoArt").css("background-image", "url('photo/"+ biografia[i].picture +"')");
-                            console.log(biografia[i].picture);
+                           // console.log(biografia[i].picture);
 
                         }
                     }
@@ -489,8 +503,8 @@ $(document).ready(function(){
                 var idvalue = $(this).attr('value');
                 var idclass = $(this).attr("class");
 
-                console.log("Musicas value "+idvalue);
-                console.log("Musicas class "+idclass);
+              //  console.log("Musicas value "+idvalue);
+                //console.log("Musicas class "+idclass);
                 idclass = idclass.replace(" "+idvalue, "");
 
 //ADICIONAR MUSICA A LISTA
@@ -498,16 +512,16 @@ $(document).ready(function(){
                 if (idclass == "addMusic"){
                     var size = playingNow.length;
 
-                    console.log("playlist notmal: ");
-                    console.log(playingNow);
+                  //  console.log("playlist notmal: ");
+                    //console.log(playingNow);
 
                     for(var j=0; j < musicas.length; j++){
                         if(musicas[j].name.replace(/\s/g, "") == idvalue){
                             playingNow[size] = musicas[j];
                         }
                     }
-                    console.log("depois de add>");
-                    console.log(playingNow);
+                   // console.log("depois de add>");
+                   // console.log(playingNow);
 
                     var escreve =  "<div class='agora "+ playingNow[size].local +"'>"+
                         "<div class= 'nomeAgora'> "+ playingNow[size].name +" </div>"+
@@ -524,8 +538,8 @@ $(document).ready(function(){
                 else if (idclass == "playMusic"){
                     index = 0;
                     playingNow.length = 1;
-                    console.log("playlist notmal: ");
-                    console.log(playingNow);
+                    //console.log("playlist notmal: ");
+                    //console.log(playingNow);
 
                     for(var j=0; j < musicas.length; j++){
                         if(musicas[j].name.replace(/\s/g, "") == idvalue){
@@ -534,17 +548,7 @@ $(document).ready(function(){
                     }
                     ocupado = 0;
                     executar(playingNow);
-                    $("#tocandoPage").html("");
-                    for(var j=0; j < playingNow.length; j++){
-                        console.log(playingNow[j].local);
-                        var escreve =  "<div class='agora "+ playingNow[j].local +"'>"+
-                            "<div class= 'nomeAgora'> "+ playingNow[j].name +" </div>"+
-                            "<div class='albumAgora'> "+ playingNow[j].album +" </div>"+
-                            "<div class='autorAgora'> "+ playingNow[j].artist +" </div>"+
-                            "</div>";
-                        $("#tocandoPage").append(escreve);
-                        showPlaylist();
-                    }
+                    escreveLista();
                     //showPlaylist();
                 }
             })
@@ -552,11 +556,6 @@ $(document).ready(function(){
         });
 
     }
-
-
-
-
-
 
 //FUNCAO RELACIONADA AOS ARTISTAS
 
@@ -669,17 +668,7 @@ $(document).ready(function(){
                         console.log(playingNow);
                         ocupado = 0;    
                         executar(playingNow);
-                        $("#tocandoPage").html("");
-                        for(var j=0; j < playingNow.length; j++){
-                            console.log(playingNow[j].local);
-                        var escreve =  "<div class='agora "+ playingNow[j].local +"'>"+
-                            "<div class= 'nomeAgora'> "+ playingNow[j].name +" </div>"+
-                            "<div class='albumAgora'> "+ playingNow[j].album +" </div>"+
-                            "<div class='autorAgora'> "+ playingNow[j].artist +" </div>"+
-                        "</div>";
-                            $("#tocandoPage").append(escreve);
-                            showPlaylist();
-                        }
+                        escreveLista();
 
 
                        // alert("play artist'songs:"  + "."+idclass+"."+idvalue);
@@ -767,17 +756,7 @@ $(document).ready(function(){
                     }
                     ocupado = 0;
                     executar(playingNow);
-                    $("#tocandoPage").html("");
-                    for(var j=0; j < playingNow.length; j++){
-                        console.log(playingNow[j].local);
-                        var escreve =  "<div class='agora "+ playingNow[j].local +"'>"+
-                            "<div class= 'nomeAgora'> "+ playingNow[j].name +" </div>"+
-                            "<div class='albumAgora'> "+ playingNow[j].album +" </div>"+
-                            "<div class='autorAgora'> "+ playingNow[j].artist +" </div>"+
-                            "</div>";
-                        $("#tocandoPage").append(escreve);
-                        showPlaylist();
-                    }
+                    escreveLista();
                         //showPlaylist();
                     }
             })
@@ -788,7 +767,7 @@ $(document).ready(function(){
 
     function stopMusic(){// stop music
         minhaMusica.load();
-        isItPlaying = 0;
+        isItPlaying = 2;
         $("#barraIn").css("width","0px");
         $("#toPlay").html("Play");
     }
@@ -805,12 +784,12 @@ $(document).ready(function(){
         if (ocupado == 0){
             ocupado =1;
             
-            console.log("ocupado: "+ ocupado);        
+            //console.log("ocupado: "+ ocupado);
              escreveInfo(refmusica);
              minhaMusica.load();
              minhaMusica.addEventListener("canplay", function(){
             
-            console.log("can: "+minhaMusica.duration.toFixed(0));
+            //console.log("can: "+minhaMusica.duration.toFixed(0));
             tamanho = minhaMusica.duration.toFixed(0);
             tamanho = tamanho*1000;
             escreveTempo(refmusica);
@@ -831,13 +810,18 @@ $(document).ready(function(){
             var tam = minhaMusica.duration.toFixed(0);
            // console.log("atual: "+atual);
             //console.log("duaracao: "+ tam/15);
-            console.log("contador: "+index);
+           // console.log("contador: "+index);
             $("#inde").html(index);
+        var hsua = index+1;
+        var info = "Playing music "+hsua+" of "+playingNow.length+"...";
+            $("#numberMusic").html(info);
             $("#vete").html(playingNow.length);
 
 
             if( atual >= tam/80){
-                if(index<playingNow.length){
+                //console.log("tamoamj; ");
+                //console.log(playingNow.length);
+                if(index<playingNow.length-1){
                     index++;
                     //exeW = executar(refmusica);
                     //exeW = clearTimeout(exeW);
@@ -889,14 +873,14 @@ $(document).ready(function(){
             min = parseInt(min);
             seg = Current%60;
       var cMinute = min + ":" + seg;
-        console.log("Corrente: "+cMinute);
+        //console.log("Corrente: "+cMinute);
       return (cMinute);
 
     }
 
     function escreveInfo(refmusicas){ //it writes author;s name, music's name and music's address
         var vmus = refmusicas;
-        console.log(vmus[index].name);
+        //console.log(vmus[index].name);
         $("#nomeMusica").html(vmus[index].name);
         $("#nomeCantor").html(vmus[index].artist);
          minhaMusica.src = caminho + vmus[index].local + tipo;
@@ -913,13 +897,36 @@ $(document).ready(function(){
     }
 
     function showArtist(){
+        console.log("playinNow");
+        console.log(playingNow);
         $("#artistPage").css("display", "block");
         $("#tocandoPage").css("display", "none");
+        $("#CurrentArt").css("backgroundColor", "#696969").css("color", "#fff");
+        $("#playingNow").css("backgroundColor", "transparent").css("color", "#101052");
     }
 
     function showPlaylist(){
         $("#artistPage").css("display", "none");
         $("#tocandoPage").css("display", "block");
+        $("#playingNow").css("backgroundColor", "#696969").css("color", "#fff");
+        $("#CurrentArt").css("backgroundColor", "transparent").css("color", "#101052");
     }
+
+    function escreveLista(){
+        $("#tocandoPage").html("");
+        for(var j=0; j < playingNow.length; j++){
+           // console.log(playingNow[j].local);
+            var escreve =  "<div class='agora "+ playingNow[j].local +"'>"+
+                "<div class= 'nomeAgora'> "+ playingNow[j].name +" </div>"+
+                "<div class='albumAgora'> "+ playingNow[j].album +" </div>"+
+                "<div class='autorAgora'> "+ playingNow[j].artist +" </div>"+
+                "</div>";
+            $("#tocandoPage").append(escreve);
+            showPlaylist();
+        }
+    }
+
+
+
 
 });

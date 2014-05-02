@@ -25,7 +25,7 @@ body h2{
     background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#fff)) repeat-x;
 
     box-shadow : #fff 2px 2px 12px 2px;
-    background-color: green;
+
     width: 400px;
     height: 600px;
     float: right;
@@ -91,18 +91,21 @@ body h2{
             display: block;
             overflow: auto;
         }
- .btnMusicArt, .btnPlayArt{
+ .btnMusicArt, .btnPlayArt, .btnGenreArt{
                 color: #ffffff;
                 padding: 5px;
                 height: auto;
-                width: 15%;
+                width: auto;
                 border-radius: 10px;
 
                 background-color: #696969;
                 float: left;
 
               }
-        .btnMusicArt{ float: right}
+    .btnGenreArt, .btnMusicArt{
+        float: right;
+        margin-right: 3px;
+    }
 
         .nomeArt{
                 width: 55%;
@@ -111,7 +114,7 @@ body h2{
                 font-weight: bold;
             }
 
-        .musicasSlide{
+    .genreSlide,.musicasSlide{
 
             font-weight: bold;
             color: #ffffff;
@@ -123,6 +126,9 @@ body h2{
             padding-bottom: 15px;
             padding-top: 5px;
         }
+
+.genreSlide{background-color: red;}
+
             .agora, .itemMusica{
                 color:  #101052;
                 margin: 0 auto;
@@ -261,6 +267,38 @@ body h2{
     border-radius: 10px;
 
 }
+    #menuCurrent{
+
+        position: relative;
+        height: auto;
+        width: 390px;
+        margin: 0 auto;
+
+        overflow: auto;
+    }
+    .menuCurrentItem{
+        font-weight: bold;
+        width: auto;
+
+        position: relative;
+        float: left;
+        margin-right: 3px;
+        text-align: center;
+        border-radius: 10px 10px 0px 0px;
+        bottom: 0px;
+        padding: 5px;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+    #numberMusic{
+        font-weight: normal;
+        float: right;
+        font-style: italic;
+        border-radius: 0px;
+
+    }
+
+
 
     #listConteudo{
         border-width: medium;
@@ -268,15 +306,15 @@ body h2{
         border-right: 0px;
         border-style: solid;
         border-color: #696969;
-    color: #fff;
-    position: absolute;
-    height: 370px;
-    width: 390px;
-    background-color: #696969;
-    left: 15px;
-    bottom: 15px;
-    border-radius: 10px;
-    overflow: auto;
+        color: #fff;
+        position: absolute;
+        height: 350px;
+        width: 390px;
+        background-color: #696969;
+        left: 15px;
+        bottom: 15px;
+        border-radius: 0px 0px 10px 10px;
+        overflow: auto;
 }
 
 #artistPage, #tocandoPage{
