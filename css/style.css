@@ -40,16 +40,19 @@ body h2{
 }
 
     .menuItem{
-    font-weight: bold;
-    margin: 0 auto;
-    position: relative;
-    height: 40px;
-    width: 24%;
-    text-align: center;
-    border-radius: 10px 10px 0px 0px;
-    padding-top: 10px;
-    float: left;
-}
+        font-weight: bold;
+        margin: 0 auto;
+        position: relative;
+        height: 40px;
+        width: 24%;
+        text-align: center;
+        border-radius: 10px 10px 0px 0px;
+        padding-top: 10px;
+        float: left;
+    }
+    #resultado{
+        float: right;
+    }
 
 
 
@@ -408,18 +411,21 @@ body h2{
 }
 
 .informacoes{
+    position: relative;
     margin-bottom: 5px;
+    height: 50px;
+    overflow: auto;
+
 
 }
 
 .informacao{
+    margin-top: 3px;
     text-align: center;
-    height: 100%;
+    height: 35px;
     overflow: hidden;
     text-shadow: 2px 2px 2px #fff;
-    padding: 10px;
-    padding-left: 5px;
-    padding-rigth: 5px;
+    padding: 5px;
     background: -moz-linear-gradient(top, #ddd, #fff) repeat-X;
     /* Google Chrome */
     background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#fff)) repeat-x;
@@ -429,7 +435,7 @@ body h2{
 #nomeCantor{
     width: 30%;
     float: left;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 #nomeMusica{
