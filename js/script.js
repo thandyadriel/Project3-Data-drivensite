@@ -92,6 +92,10 @@ showArt();
         showAlb();
     })
 
+    $("#resultado").unbind().click(function(){
+        mexer("#pesquisa");
+    });
+
     $("#btnPesquisa").unbind().click(function(){
         $("#resultado").css("backgroundColor", "#696969").css("color", "#fff");
         $("#album, #genero, #artista").css("backgroundColor", "transparent").css("color", "#101052");
@@ -150,7 +154,7 @@ showArt();
 
             if (idclass == "addMusic"){
                 var size = playingNow.length;
-
+                mexer("#boxList");
                 console.log("playlist notmal: ");
                 console.log(playingNow);
 
@@ -415,7 +419,7 @@ showArt();
 
                 if (idclass == "addMusic"){
                     var size = playingNow.length;
-
+                    mexer("#boxList");
                     console.log("playlist notmal: ");
                     console.log(playingNow);
 
@@ -622,7 +626,7 @@ showArt();
 
                 if (idclass == "addMusic"){
                     var size = playingNow.length;
-
+                    mexer("#boxList");
                   //  console.log("playlist notmal: ");
                     //console.log(playingNow);
 
@@ -789,6 +793,7 @@ showArt();
 // MOSTRA A BIOGRAFIA DO ARTISTA CLICADO
 
                    else if (idclass == "nomeArt"){ // show artist info
+                        mexer("#boxList");
 
                         for(var i = 0; i<biografia.length; i++){
 
@@ -830,7 +835,7 @@ showArt();
 
                 if (idclass == "addMusic"){
                     var size = playingNow.length;
-
+                    mexer("#boxList");
                     console.log("playlist notmal: ");
                     console.log(playingNow);
 
@@ -894,19 +899,17 @@ showArt();
 
         if (ocupado == 0){
             ocupado =1;
-            
-            //console.log("ocupado: "+ ocupado);
-             escreveInfo(refmusica);
+            mexer("#boxPlayer")
+            escreveInfo(refmusica);
              minhaMusica.load();
              minhaMusica.addEventListener("canplay", function(){
-            
-            //console.log("can: "+minhaMusica.duration.toFixed(0));
-            tamanho = minhaMusica.duration.toFixed(0);
-            tamanho = tamanho*1000;
+             tamanho = minhaMusica.duration.toFixed(0);
+             tamanho = tamanho*1000;
             escreveTempo(refmusica);
-        });
+                 minhaMusica.play();
+             });
 
-            minhaMusica.play(); 
+
             return;
         }
 
@@ -916,32 +919,25 @@ showArt();
 
             var atual = minhaMusica.currentTime.toFixed(0);
             var tam = minhaMusica.duration.toFixed(0);
-           // console.log("atual: "+atual);
-            //console.log("duaracao: "+ tam/15);
-           // console.log("contador: "+index);
-            $("#inde").html(index);
+            console.log("atual: "+atual);
+            console.log("tam: "+tam);
+
         var hsua = index+1;
         var info = "Playing music "+hsua+" of "+playingNow.length+"...";
-            $("#numberMusic").html(info);
-            $("#vete").html(playingNow.length);
+        if(playingNow.length == 0){$("#numberMusic").html("Waiting new music...");}
+        else{$("#numberMusic").html(info);}
 
+            if( atual == tam){
 
-            if( atual >= tam/80){
-                //console.log("tamoamj; ");
-                //console.log(playingNow.length);
                 if(index<playingNow.length-1){
                     index++;
-                    //exeW = executar(refmusica);
-                    //exeW = clearTimeout(exeW);
-                    //setCu = clearTimeout(setCu);
-                    setDu = clearTimeout(setDu);
                     ocupado = 0;
                     stopMusic();
                     executar(playingNow);
-                    
+                    setDu = clearTimeout(setDu);
                 }else{alert("The playlist is over!"); stopMusic(); index=0;}
             }
-            else{}
+            else{console.log("ainda nao é o momento..");}
         }, 1000);
 
     setCu = setInterval(function(){
@@ -1052,5 +1048,17 @@ showArt();
         }
     }
 
+
+    function vibrar(onde){
+        $(onde).effect("bounce", {direction:'left',times:5 }, 500);
+    }
+
+    function mexer(onde){
+        $(onde).effect( "shake" )
+    }
+
+    function ficarOpaco(onde){
+        TweenMax.from(onde,.2, {opacity:.5, yoyo: true, repeat: 2});
+    }
 
 });
