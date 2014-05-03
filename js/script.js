@@ -79,6 +79,7 @@ showArt();
         mexer("#pesquisa");
     });
 
+   // $("#getTexto").keyup(function(){
     $("#btnPesquisa").unbind().click(function(){
         $("#resultado").css("backgroundColor", "#696969").css("color", "#fff");
         $("#album, #genero, #artista").css("backgroundColor", "transparent").css("color", "#101052");
@@ -657,7 +658,7 @@ showArt();
         return;
     }
 
-     setInterval(function(){
+    setInterval(function(){
        var atual = minhaMusica.currentTime.toFixed(0);
        var tam = minhaMusica.duration.toFixed(0);
        var hsua = index+1;
@@ -767,5 +768,5 @@ showArt();
     function mexer(onde){
         $(onde).effect( "shake" )
     }
-    
+
 });
