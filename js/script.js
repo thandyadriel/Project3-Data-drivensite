@@ -15,22 +15,22 @@ $(document).ready(function(){
     var found; //it stores the number of result from a search
     var theEnd =0;
 
-    $.getJSON("data/listaM.json",function(data){
+    $.getJSON("data/listaM.json",function(data){//it gets all music from json file
        musicas = data.music;
     });
 
 
-showArt();
+showArt(); // it shows all artist
 
-   var minhaMusica = document.getElementById("myAudio");
+   var minhaMusica = document.getElementById("myAudio"); // it gets the audio
 
-    $("#playingNow").unbind().click(function(){
-       escreveLista();
-       mudaCor(playingNow);
+    $("#playingNow").unbind().click(function(){ //it writes the corrent music in the playlist's  box
+       escreveLista(); // it writes the mucis
+       mudaCor(playingNow); //it puts the music which is playing at the moment with diffentes colors
     });
 
     $("#CurrentArt").unbind().click(function(){
-        showArtist();
+        showArtist();//it shows the current artist the is the author of the current music
     });
 
    $("#toPlay").unbind().click(function(){
