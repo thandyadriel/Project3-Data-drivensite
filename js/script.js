@@ -136,7 +136,7 @@ showArt(); // it shows all artist
             idclass = idclass.replace(" "+idvalue, "");
 
 //ADICIONAR MUSICA A LISTA
-
+//it adds to the playlist just the song which was clicked
             if (idclass == "addMusic"){
                 var size = playingNow.length;
                 mexer("#boxList");
@@ -154,7 +154,7 @@ showArt(); // it shows all artist
 
 
 //TOCAR UMA NOVA MUSICA
-
+//it plays the music which was clicked
             else if (idclass == "playMusic"){
                 index = 0;
                 playingNow.length = 1;
@@ -170,6 +170,7 @@ showArt(); // it shows all artist
     });
 
  //FUNCAO RELACIONADA AOS ALBUMS
+ //function related to albums
     function showAlb(){
         $("#page").html("");
         $("#album").css("backgroundColor", "#696969").css("color", "#fff");
@@ -261,7 +262,7 @@ showArt(); // it shows all artist
                 }
 
 // TOCA TODAS AS MUSICAS DO ARTISTA QUE FOR CLICADO
-
+// it plays the list of music of this artist
                 else  if(idclass == "btnPlayArt"){ //play the list
                     index = 0;
 
@@ -282,7 +283,7 @@ showArt(); // it shows all artist
                 }
 
 // MOSTRA A BIOGRAFIA DO ARTISTA CLICADO
-
+//it show the biography of the artist which was clicked
                 else if (idclass == "nomeArt"){ // show artist info
                     for(var i = 0; i<biografia.length; i++){
                         if (biografia[i].artist.replace(/\s/g, "") == idvalue){
@@ -302,14 +303,14 @@ showArt(); // it shows all artist
 
 
 //FAZER COISAS RELACIONADAS AS MUSICAS
-
+//do things related to musics
             $('.itemMusica div').click(function(){
                 var idvalue = $(this).attr('value');
                 var idclass = $(this).attr("class");
                 idclass = idclass.replace(" "+idvalue, "");
 
 //ADICIONAR MUSICA A LISTA
-
+//add just one music to the playlist
                 if (idclass == "addMusic"){
                     var size = playingNow.length;
                     mexer("#boxList");
@@ -325,7 +326,7 @@ showArt(); // it shows all artist
                 }
 
 //TOCAR UMA NOVA MUSICA
-
+//it plays just one music
                 else if (idclass == "playMusic"){
                     index = 0;
                     playingNow.length = 1;
@@ -342,7 +343,7 @@ showArt(); // it shows all artist
         });
 
     }
-
+//function related to gengers
 //FUNCAO RELACIONADA AOS GENEROS
     function showGen(){
         $("#page").html("");
@@ -361,10 +362,8 @@ showArt(); // it shows all artist
                 }
                 if(existe == 0){ arArt[y] = musicas[x].genre; }
             }
-
-// CRIA MENU SANFONA ARTISTA
-
-//CRIA LISTA DE ARTISTAS
+//it creates the list of genres
+//CRIA LISTA DE generos
             for(var x=0; x< arArt.length;x++){
                 var varPageArt = "" +
                     "<div class='pageArt'>"+
@@ -376,6 +375,7 @@ showArt(); // it shows all artist
 
 
 //CRIA LISTA DE MUSICAS
+//it creates a list of musics
                 for(var j=0; j < musicas.length; j++){
                     if(musicas[j].genre == arArt[x]){
                         var varPageArt = varPageArt +
@@ -392,15 +392,13 @@ showArt(); // it shows all artist
                 $("#page").append(varPageArt);
             }
 
-//FAZER COISAS RELACIONADAS AOS ARTISTAS
-
             $('.pageArt .btnPlayArt, .pageArt .btnMusicArt, .pageArt .nomeArt').click(function(){
                 var idvalue = $(this).attr('value');
                 var idclass = $(this).attr("class");
                 idclass = idclass.replace(" "+idvalue, "");
 
-//MOSTRA  E OCULTA MUSICAS DO ARTISTA
-
+//MOSTRA  E OCULTA MUSICas
+//it shows and hides the music
                 if(idclass == "btnMusicArt"){// show music
                     var correnteArtMusic;
                     correnteArtMusic = idvalue;
@@ -408,7 +406,8 @@ showArt(); // it shows all artist
                     $("."+correnteArtMusic).slideDown("slow");
                 }
 
-// TOCA TODAS AS MUSICAS DO ARTISTA QUE FOR CLICADO
+// TOCA TODAS AS MUSICAS
+//it plays the music
 
                 else  if(idclass == "btnPlayArt"){ //play the list
                     index = 0;
