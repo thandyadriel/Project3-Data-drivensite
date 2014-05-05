@@ -6,13 +6,13 @@ $(document).ready(function(){
     var index = 0; //it is the index
     var tamanho; // it stores the duration of current music
     var isItPlaying = 1; //it defines what the button play should do
-    var playingNow = new Array();
-    var ocupado = 0;
-    var biografia;
-    var setCu;
-    var setDu;
-    var loading;
-    var found;
+    var playingNow = new Array(); //this array will store the current playlist
+    var ocupado = 0; // this is a flag to prevent the execution of a function (executar) when another is ongoing
+    var biografia; // this variable store information about the artist such as picture, bio, etc
+    var setCu; // it stores the function setTimeout
+    var setDu;// it stores the function setTimeout
+    var loading; //
+    var found; //it stores the number of result from a search
     var theEnd =0;
 
     $.getJSON("data/listaM.json",function(data){
