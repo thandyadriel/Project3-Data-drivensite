@@ -36,7 +36,7 @@ showArt(); // it shows all artist
    $("#toPlay").unbind().click(function(){
     if(playingNow.length==0){mexer("#boxPage")}else{
         if(isItPlaying == 0){//first time.. just play starting of the first music
-            index = 0;
+            index = 0; //index of the play list
             itIsTheEnd = 0;
             executar(playingNow);
             //escreveLista();
@@ -64,23 +64,23 @@ showArt(); // it shows all artist
     });
 
     $("#artista").unbind().click(function(){
-        showArt();
+        showArt(); // it shows the list of artits
     })
 
     $("#genero").unbind().click(function(){
-        showGen();
+        showGen(); //it shows the list of gengers
     })
 
     $("#album").unbind().click(function(){
-        showAlb();
+        showAlb(); //it shows the list of albums
     })
 
     $("#resultado").unbind().click(function(){
-        mexer("#pesquisa");
+        mexer("#pesquisa"); //when the user clicks on the result, the search box shakes to show that it is necessario to do some search then show results
     });
 
    // $("#getTexto").keyup(function(){
-    $("#btnPesquisa").unbind().click(function(){
+    $("#btnPesquisa").unbind().click(function(){ //do a search
         $("#resultado").css("backgroundColor", "#696969").css("color", "#fff");
         $("#album, #genero, #artista").css("backgroundColor", "transparent").css("color", "#101052");
         found = 0;
@@ -92,6 +92,8 @@ showArt(); // it shows all artist
         $("#page").html("");
 
         for(var j= 0; j<musicas.length; j++){
+            
+            //it use the key word to search into artist, music, album and genger
             var strN = musicas[j].name;
             var strC = musicas[j].artist;
             var strG = musicas[j].genre;
@@ -103,7 +105,7 @@ showArt(); // it shows all artist
             strG = strG.toLowerCase();
             strA = strA.toLowerCase();
 
-
+            //verify if the key word match with the data 
             strN = strN.search(consulta);
             strC = strC.search(consulta);
             strG = strG.search(consulta);
