@@ -99,7 +99,7 @@ showArt(); // it shows all artist
             var strG = musicas[j].genre;
             var strA = musicas[j].album;
 
-
+            // it makes everything lower case
             strN = strN.toLowerCase();
             strC = strC.toLowerCase();
             strG = strG.toLowerCase();
@@ -111,7 +111,7 @@ showArt(); // it shows all artist
             strG = strG.search(consulta);
             strA = strA.search(consulta);
 
-            if(strA != -1 || strG != -1 || strC != -1 || strN != -1){
+            if(strA != -1 || strG != -1 || strC != -1 || strN != -1){ // if at least one is not -1, it is matched
                 found++;
 
                 resultString = "<div class='itemResult "+ musicas[j].name.replace(/\s/g, "") +"' value = '"+ musicas[j].name.replace(/\s/g, "") +"'>"+
@@ -181,7 +181,7 @@ showArt(); // it shows all artist
             var arArt = new Array();
             var genero;
             var varPageArt;
-
+        // search for artist and his respectivelly music
             for(var x=0; x < musicas.length; x++){
                 var existe=0;
                 for (var y=0; y<arArt.length; y++){
@@ -190,8 +190,7 @@ showArt(); // it shows all artist
                 if(existe == 0){ arArt[y] = musicas[x].album; }
             }
 
-// CRIA MENU SANFONA ARTISTA
-
+// it creates the artist list
 //CRIA LISTA DE ARTISTAS
             for(var x=0; x< arArt.length;x++){
                 varPageArt = "<div class='pageArt'>"+
@@ -202,6 +201,7 @@ showArt(); // it shows all artist
            "<div class='musicasSlide "+ arArt[x].replace(/\s/g, "") +"' value = '"+ arArt[x].replace(/\s/g, "") +"'> Music <div class='listaMusicasAqui'>";
 
 //CRIA LISTA DE MUSICAS
+//it creates the list of the muscis of this artist
                 for(var j=0; j < musicas.length; j++){
                     if(musicas[j].album == arArt[x]){
                         genero = musicas[j].genre;
@@ -218,6 +218,7 @@ showArt(); // it shows all artist
          varPageArt = varPageArt +"</div></div><div class='genreSlide "+ arArt[x].replace(/\s/g, "") +"' value = '"+ arArt[x].replace(/\s/g, "") +"'>"+ genero +"<div class='listaGenreAqui'>";
 
 //CRIA LISTA DE GENRE
+//it creates the genger's list
                 for(var j=0; j < musicas.length; j++){
                     if(musicas[j].genre == genero){
                         varPageArt = varPageArt +
@@ -235,14 +236,14 @@ showArt(); // it shows all artist
             }
 
 //FAZER COISAS RELACIONADAS AOS ARTISTAS
-
+//do things related to the artist
             $('.pageArt .btnPlayArt, .pageArt .btnMusicArt, .pageArt .nomeArt, .btnGenreArt').click(function(){
                 var idvalue = $(this).attr('value');
                 var idclass = $(this).attr("class");
                 idclass = idclass.replace(" "+idvalue, "");
 
 //MOSTRA  E OCULTA MUSICAS DO ARTISTA
-
+//it shows and hides the music
                 if(idclass == "btnMusicArt"){// show music
                     var correnteArtMusic;
                     correnteArtMusic = idvalue;
@@ -251,7 +252,7 @@ showArt(); // it shows all artist
                 }
 
 //MOSTRA  E OCULTA genero DO ARTISTA
-
+//it shows and hides the musics related to genger
                 if(idclass == "btnGenreArt"){// show genre
                     var correnteArtMusic;
                     correnteArtMusic = idvalue;
